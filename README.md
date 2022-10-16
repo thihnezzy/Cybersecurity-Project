@@ -12,7 +12,7 @@ A project built by 4 engineering students from INSA Centre Val de Loire
     - cd to server side folder. And type in the terminal: npm start
 
 - In the browser:
-    - http://localhost:<PORT>/<ROUTE>
+    - http://localhost:[PORT]/[ROUTE]
 
     - In the future, we will develop more routes
 
