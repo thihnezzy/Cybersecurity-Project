@@ -25,3 +25,22 @@ export const createItem = async (req,res) =>{
     }
     res.send('Item Created');
 }
+
+export const updateItem = async (req, res) => {
+    const itemUpdated = req.body.item;
+    const id = req.body.id;
+    try {
+        await ItemDetails.findByIdAndUpdate(id, itemUpdated, {new: true});
+        res.redirect('/:id');
+    }
+    catch (error) {
+        res.status(404).json({message: error.message});
+    }
+
+}
+
+export const deleteItem = async (req,res) =>{
+    const {id} = req.params.id;
+    const item = await ItemDetails.findByIdAndRemove(id);
+    res.redirect('/');
+}

@@ -1,0 +1,14 @@
+.item{
+    width: 30%;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 3px #ccc;
+    text-align: center;
+    transition: all 0.3s ease-out;
+}
+
+.item:hover{
+    box-shadow: 0 2px 3px #000;
+    transform: scale(1.05);
+}

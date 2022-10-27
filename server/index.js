@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-import postRoutes from './routes/items.js';
+import itemsRoute from './routes/items.js';
 
 const app = express();
 
@@ -20,7 +20,10 @@ const app = express();
     - review (comments, rating, ...)
     - */
 
-app.use('/items',postRoutes);
+// Route for items listing
+app.use('/items', itemsRoute);
+
+
 
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
