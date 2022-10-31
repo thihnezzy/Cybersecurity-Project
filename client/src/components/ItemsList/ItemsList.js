@@ -1,3 +1,4 @@
+import { Card } from "@material-ui/core";
 import React from "react";
 
 import Items from "./Items/Item";
@@ -23,10 +24,13 @@ const ItemsList = () => {
 
     return (
         <div className="item-list">
-            {itemsList.map(item => 
+            {/* {itemsList.map(item => 
                  (
                     <Items name={item.name} description={item.description} price={item.price}/>
-                ))}
+                ))} */}
+            {
+                
+            }
         </div>
     );
 }
