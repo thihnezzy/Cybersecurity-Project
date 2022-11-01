@@ -16,9 +16,7 @@ import { lightBlue } from '@material-ui/core/colors';
 
 const ProductDetail = (props) =>{
   const {id} = useParams();
-  // const getSingleProductData = props.data.find(x => x.id === id)?.foo;
-  console.log(id);
-  const getSingleProductData = props.data[0];
+  const getSingleProductData = props.data.find(x => x?.id === parseInt(id));
   const [quantity, setQuantity] = useState(1);
   const [price, setPrice] = useState(getSingleProductData.price);
 
@@ -82,9 +80,6 @@ const ProductDetail = (props) =>{
             </Row>
         </Col>
       </Row>
-      
-
-
     </Container>
   );
 }
