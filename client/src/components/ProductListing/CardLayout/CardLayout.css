@@ -1,0 +1,58 @@
+:root{
+    --card-layout-border-color: #e0e0e0;
+    --card-layout-border-radius: 4px;
+    --card-layout-border-width: 1px;
+    --card-layout-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    --card-layout-hover-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    --card-layout-hover-border-color: #e0e0e0;
+    --card-layout-hover-border-width: 1px;
+    --card-layout-hover-transition: all 0.2s ease-in-out;
+    --card-layout-transition: all 0.2s ease-in-out;
+}
+
+.product-link{
+    text-decoration: none;
+    color: inherit;
+}
+
+.card{
+    border: 1px solid rgb(127, 122, 122);
+    background-color: rgb(243, 228, 210);
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -webkit-border-radius: 2px solid grey;
+    -moz-border-radius: 2px solid grey;
+    -ms-border-radius: 2px solid grey;
+    -o-border-radius: 2px solid grey;
+}
+
+.card:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+}
+
+.card-img-top{
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.card-footer{
+    display: inline-block;
+}
+.card-footer small{
+    font-weight: 600;
+    display: inline-block;
+    margin-right: 2rem;
+}
+
+.card-footer .btn{
+    border: none;
+    background-color: #FF8C00;
+}
