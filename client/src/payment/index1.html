@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <title> Payment Method </title>
+</head>
+<body>
+    
+   
+<div class="container">
+    <h1 style="text-align:center">Payment Method</h1>
+    <input class="checks" onclick="checkOnlyOne(this.value);" type="checkbox" name="methodPayment" value="Paypal" />
+    <label for="checkbox"> 
+        <input type="image" id="image" width="90" height="60" style="float: right;"  src="./payImage/paypal.png">
+        <p>Payment with Paypal</p>
+        
+    </label> 
+    <input class="checks" onclick="checkOnlyOne(this.value);" type="checkbox" name="methodPayment" value="Debit" />
+    <label for="checkbox">
+        <input type="image" id="image" width="70" height="50" style="float: right;"  src="./payImage/creditCard.jpg">
+        <p>Payment with Debit/Credit card
+
+        </p>
+    </label> 
+    
+    <form action="/">
+    <label for="cardno"> Card Holder
+        <input type="text" name="cardno" id="cardno" maxlength="19" placeholder="e.g John Doe"/>
+    </label>
+        
+    <label for="cardno">Card Number
+    <input type="text" name="cardno" id="cardno" maxlength="19" placeholder="xxxx xxxx xxxx xxxx"onkeypress="cardspace()"/>
+    </label>
+    
+    <div class="float">
+    <label for="validtill">Valid till
+        <input type="text" name="validtill" id="validtill" maxlength="7" placeholder="MM/YY" onkeypress="addSlashes()"/>
+    </label>
+  <label for="cvv">Cvv
+        <input type="text" name="cvv" id="cvv" maxlength="3" placeholder="xxx"/>
+    </label></div>
+     
+    <button>Pay </button>
+    </form>
+</div> <script src="script.js"></script>
+</body>
+</html>
