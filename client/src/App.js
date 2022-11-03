@@ -5,6 +5,7 @@ import Home from './components/Pages/Home/Home';
 import NavBar from './components/NavBar/NavBar';
 import ProductDetail from "./ProductDetail/ProductDetail";
 import ProductListing from "./components/ProductListing/ProductListing";
+import AddNewProduct from './components/Pages/AddNewProduct/AddNewProduct';
 import ErrorPage from "./components/Pages/Error/ErrorPage";
 import './App.css';
 const DATABASE = [
@@ -118,7 +119,11 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/products' element={<ProductListing data={DATABASE}/>}/>
           <Route path='/products/:id' element={<ProductDetail data={DATABASE}/>}/>
-          <Route path='*' element={<ErrorPage/>}></Route>
+          <Route path='/new' element={<AddNewProduct/>}>
+            
+          </Route>
+          <Route path='*' element={<ErrorPage/>}>
+          </Route>
         </Routes>
 
     </div>
