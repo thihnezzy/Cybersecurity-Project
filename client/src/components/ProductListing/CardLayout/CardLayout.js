@@ -15,7 +15,7 @@ const CardLayout = (props) => {
     </Card.Body>
     <Card.Footer className="text-center" md={{span:4}}>
       <small className="text-muted">${item.price}</small>
-      <Button variant="primary">Add to cart</Button>
+      <Button variant="primary" className="add-to-cart">Add to cart</Button>
     </Card.Footer>
   </Card></Link>)
 }

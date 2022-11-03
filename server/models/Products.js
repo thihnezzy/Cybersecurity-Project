@@ -1,5 +1,4 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+import mongoose from 'mongoose';
 
 var ProductSchema = new mongoose.Schema({
     name: {
@@ -37,6 +36,9 @@ var ProductSchema = new mongoose.Schema({
     }
   },{strict: false});
 // strict: false for when we need to add an object with more or less than 8 fields
-  var Product = mongoose.model('product',ProductSchema)
-  module.exports = Product;
+
+  let ProductModel = mongoose.model('product',ProductSchema);
+//   module.exports = Product;
+
+  export default ProductModel;
   

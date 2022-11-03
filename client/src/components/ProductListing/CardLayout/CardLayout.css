@@ -52,7 +52,11 @@
     margin-right: 2rem;
 }
 
-.card-footer .btn{
+.card-footer .btn, .add-to-cart{
     border: none;
     background-color: #FF8C00;
+}
+
+.card-footer .btn:active, .add-to-cart:active{
+    background-color: #ffba67;
 }

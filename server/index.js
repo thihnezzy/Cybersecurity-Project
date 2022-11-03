@@ -3,7 +3,9 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-import itemsRoute from './routes/items.js';
+// import itemsRoute from './routes/items.js';
+import userRoute from './routes/userRoute.js';
+
 
 const app = express();
 
@@ -20,8 +22,9 @@ const app = express();
     - review (comments, rating, ...)
     - */
 
-// Route for items listing
-app.use('/items', itemsRoute);
+// Route for items listing (middleware)
+// app.use('/items', itemsRoute);
+app.use('/products', userRoute);
 
 
 

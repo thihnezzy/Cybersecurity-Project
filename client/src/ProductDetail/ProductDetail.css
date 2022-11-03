@@ -5,11 +5,14 @@
     justify-content: center;
     max-height: 100vh;
     background-color: #f5f5f5;
+    
 }
 
 .product-image{
     margin-right: 4rem;
     width: 35%;
+    max-height: fit-content;
+    object-fit: cover;
 }
 .product-detail {
     padding: 10px;

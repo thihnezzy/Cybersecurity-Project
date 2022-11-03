@@ -5,8 +5,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import ImageSlider from './ImageSlider/ImageSlider';
-import IconMinus from '../../../images/icon-minus.svg';
-import IconPlus from '../../../images/icon-plus.svg';
+import IconMinus from '../images/icon-minus.svg';
+import IconPlus from '../images/icon-plus.svg';
 import Form from 'react-bootstrap/Form';
 import './ProductDetail.css';
 
@@ -67,7 +67,7 @@ const ProductDetail = (props) =>{
                     <Button variant="secondary" onClick={onClickMinusHandler}><img src={IconMinus} alt=""/></Button>
                   </Form.Group>
                   <Form.Group controlId="productQuantity" className='form-control'>
-                    <input type="" name="" value={quantity} disabled/>
+                    <input type="" name="" value={quantity} disabled className=''/>
                   </Form.Group>
                   <Form.Group controlId="plusIcon" className='form-control'>
                     <Button variant="secondary" bg={lightBlue} onClick={onClickPlusHandler}><img src={IconPlus} alt=""/></Button>
@@ -75,7 +75,7 @@ const ProductDetail = (props) =>{
                 </Form>
               </Col>
               <Col className='add-to-cart'>
-                <Button variant="primary">Add to Cart</Button>
+                <Button variant="primary" className='add-to-cart'>Add to Cart</Button>
               </Col>
             </Row>
         </Col>
