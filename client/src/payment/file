@@ -1,0 +1,22 @@
+<p>Payment with Paypal</p><img src="./payImage/paypal.png" alt="paypal /> 
+
+.float1{
+    display: flex;
+}
+
+
+
+<h1 style="text-align:center">Payment Method</h1>
+    <input class="checks" onclick="checkOnlyOne(this.value);" type="checkbox" name="methodPayment" value="Paypal" />
+    <label for="checkbox"> 
+        <input type="image" id="image" width="90" height="60" style="float: right;"  src="./payImage/paypal.png">
+        <p>Payment with Paypal</p>
+        
+    </label> 
+    <input class="checks" onclick="checkOnlyOne(this.value);" type="checkbox" name="methodPayment" value="Debit" />
+    <label for="checkbox">
+        <input type="image" id="image" width="70" height="50" style="float: right;"  src="./payImage/creditCard.jpg">
+        <p>Payment with Debit/Credit card
+
+        </p>
+    </label> 
