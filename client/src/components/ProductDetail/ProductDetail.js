@@ -5,8 +5,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import ImageSlider from './ImageSlider/ImageSlider';
-import IconMinus from '../images/icon-minus.svg';
-import IconPlus from '../images/icon-plus.svg';
+import IconMinus from '../../images/icon-minus.svg';
+import IconPlus from '../../images/icon-plus.svg';
 import Form from 'react-bootstrap/Form';
 // import './ProductDetail.css';
 
