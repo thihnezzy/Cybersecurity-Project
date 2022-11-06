@@ -57,4 +57,4 @@ UserSchema.methods.toAuthJSON = function(){
 let UserModel = mongoose.model('User', UserSchema);
 // don't forget to add require('./models/Users'); to app.js
 
-export default UserModel
+export default UserModel;

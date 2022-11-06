@@ -7,9 +7,9 @@ const router = express.Router();
 //get Product (R)
 router.get('/', getProducts);
 //new Product (C)
-router.post('/', createProduct);
+router.post('/new-product', createProduct);
 //update Product (U)
-router.put('/',updateProduct);
+router.put('/:id',updateProduct);
 //delete Product (D)
 router.delete('/:id',deleteProduct);
 

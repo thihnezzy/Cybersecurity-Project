@@ -38,7 +38,8 @@ var ProductSchema = new mongoose.Schema({
 // strict: false for when we need to add an object with more or less than 8 fields
 
   let ProductModel = mongoose.model('product',ProductSchema);
-//   module.exports = Product;
+
+//   module.exports = ProductModel;
 
   export default ProductModel;
   
