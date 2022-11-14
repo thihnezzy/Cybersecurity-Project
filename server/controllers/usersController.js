@@ -10,12 +10,22 @@ export const getUser = async (req,res) =>{
         
 }
 
-export const registerUser = async (req,res) =>{
-    const User = req.body;
-
-    const newUser = new UserModel(User);
-
+export const loginUser = async (req,res) => {
     try {
+        const UserModelData = await UserModel.findById(req.params.id);
+
+        const {email, password} = UserModelData;
+
+        res.status(200).json(UserModelData);
+    }catch (err) {
+        res.status(404).json({message: error.message});
+    }
+}
+
+export const registerUser = async (req,res) =>{
+    try {
+        const user = req.body;
+        const newUser = new UserModel(user);
         await newUser.save();    
         res.status(201).json(newUser);
     } catch (error) {

@@ -2,14 +2,9 @@ import mongoose from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
-import secret from '../config';
 
-// var mongoose = require('mongoose');
-// var uniqueValidator = require('mongoose-unique-validator');
-// crypto for hashing passwords
-// var crypto = require('crypto');
-// var jwt = require('jsonwebtoken');
-// var secret = require('../config').secret;
+//Where is '../config file'
+// import secret from '../config';
 
 
 const UserSchema = new mongoose.Schema({
