@@ -1,6 +1,6 @@
 import React from 'react';
 
-import nike from '../images/nike.PNG';
+import nike from '../../../images/nike.PNG';
 
 const Home = () => {
 
@@ -9,7 +9,7 @@ const Home = () => {
             
             <div class="card bg-dark text-white border-0">
                 <img src={nike} class="card-img" alt="..." width="100%"
-    height="700px" posirion="relative"/>
+    height="700px" position="relative"/>
                 <div class="card-img-overlay d-flex flex-column justify-content">
                     <div className="container">
                     <h5 class="card-title display-3 fw-bolder mb-0 text-center">NEW ARRIVALS</h5>

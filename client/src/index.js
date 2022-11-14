@@ -1,33 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-// import {StrictMode} from 'react';
-// import {createRoot} from 'react-dom/client';
-// import { Provider } from 'react-redux';
-// import { createStore, applyMiddleware, compose } from 'redux';
-// import thunk from 'redux-thunk';
-// import reducers from './reducers';
-import {Routes, Route} from 'react-router-dom';
-import "../node_modules/boostrap/dist/css/bootstrap.min.css";
+import {Routes, Route, BrowserRouter} from 'react-router-dom';
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 
 import App from './App';
+import ProductDetail from "./ProductDetail/ProductDetail";
+import ProductListing from "./components/ProductListing/ProductListing";
+import AddNewProduct from './components/Pages/AddNewProduct/AddNewProduct';
+import ErrorPage from "./components/Pages/Error/ErrorPage";
+import Profile from './components/Pages/Profile/Profile';
+import Register from './components/Pages/Register/Register';
 
-// const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
-// const rootElement = 
-// document.getElementById('root');
-// const root = createRoot(rootElement);
+ const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<BrowserRouter>
+  <Routes>
+          <Route path='/' element={<App/>}/>
+          <Route path='/cart' element={<App/>}/>
+          <Route path='/checkout' element={<App/>}/>
+          <Route path='/new' element={<AddNewProduct/>}/>
+          <Route path='/profile' element={<Profile/>}/>
+          <Route path='/products' element={<ProductListing/>}/>
+          <Route path='/products/:id' element={<ProductDetail/>}/>
+          <Route path='/register' element={<Register/>}/>
+          <Route path='*' element={<ErrorPage/>}>
 
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
+          </Route>
+</Routes>
+</BrowserRouter>); 
 
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
+// root.render(<App/>);

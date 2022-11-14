@@ -1,12 +1,12 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/NavBar/Navbar';
-import Home from './components/Home';
-import Footer from './components/Footer';
+import Home from './components/Pages/Home/Home';
+import Footer from './components/Footer/Footer';
 import Products from './components/Products/Products';
 import { commerce } from './components/lib/commerce';
 import Cart from './components/Cart/Cart';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Checkout from './components/CheckoutForm/Checkout/Checkout';
 
 function App() {
@@ -47,25 +47,31 @@ function App() {
     fetchProducts();
     fetchCart();
   }, []);
-
-  console.log(cart);
-
+  const location = useLocation();
+  console.log(location);
   return (
-    <Router>
-      <div>
-        <Routes>
-          <Route path="/" element={<><Navbar totalItems={cart.total_items}/><Home/><Products products={products} onAddToCart={handleAddToCart}/><Footer/></>} />
-          <Route path="/cart" element={<><Navbar totalItems={cart.total_items}/>
-          <Cart 
-          cart={cart}
-          handleUpdateCartQty={handleUpdateCartQty}
-          handleRemoveFromCart={handleRemoveFromCart}
-          handleEmptyCart={handleEmptyCart}
-          /></>} />
-          <Route path="/checkout" element={<Checkout cart={cart} />} />
-        </Routes>
-      </div>
-    </Router>
+    <>
+    {location.pathname === '/' && <>
+    <Navbar totalItems={cart.total_items}/>
+    <Home/><Products products={products} onAddToCart={handleAddToCart}/>
+    <Footer/></>}
+
+    {location.pathname  === '/cart' && <>
+          <Navbar totalItems={cart.total_items}/>
+           <Cart 
+            cart={cart}
+            handleUpdateCartQty={handleUpdateCartQty}
+            handleRemoveFromCart={handleRemoveFromCart}
+            handleEmptyCart={handleEmptyCart}
+            />
+            </>
+    } 
+    {
+      location.pathname === '/checkout' && <>
+        <Checkout cart={cart} />
+      </>
+    }
+    </>
   );
 }
 

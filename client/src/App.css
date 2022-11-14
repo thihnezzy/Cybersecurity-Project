@@ -45,4 +45,42 @@
    
   
   
+  Navbar
+.navbar-nav a{
+    font-size: 18px;
+  }
+  
+  
+  /*HOME*/
+  .hero p {
+   color: #FCFE19;
+  }
+  .video{
+    margin-top: 90px;
+    margin-left: 40px;
+    width: 90%;
+  }
+  
+  .video iframe{
+    border:none;
+    border-radius: 10px;
+    width: 100%;
+    height: 400px;
+  }
+  
+  footer {
+      margin-top: 100px;
+      background-color: #0C0F0A;
+      padding: 30px;
+      color: #fff;
+      display: flex;
+      flex-wrap:wrap;
+      justify-content: space-between;
+  margin-top: 450px;
+  
+    }
+    footer .social-media{
+      display: flex;
+    }
+   
   
