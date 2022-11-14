@@ -4,7 +4,7 @@ import { AppBar, Toolbar, IconButton, MenuItem, Menu, Typography, Badge } from '
 import { Link, useLocation } from 'react-router-dom';
 
 import useStyles from './styles';
-
+import logo from '../../images/logo-sport.PNG';
 const Navbar = ({ totalItems }) => {
     const classes = useStyles();
     const location = useLocation();
@@ -14,7 +14,7 @@ const Navbar = ({ totalItems }) => {
             <AppBar position="fixed" className={classes.appBar} color="inherit">
                 <Toolbar>
                     <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
-                        <img src="/assets/logo-sport.PNG" alt="" height="40px" className={classes.image} />
+                        <img src={logo} alt="" height="40px" className={classes.image} />
                     </Typography>
                     <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
                         <div className="container">
@@ -45,7 +45,7 @@ const Navbar = ({ totalItems }) => {
                                         <i className='fa fa-user-plus me-1'> </i>
                                     </a>
                                 </div>
-                                {location.pathname == '/' && (
+                                {location.pathname === '/' && (
                                     <div className={classes.button}>
                                         <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
                                             <Badge badgeContent={totalItems} color="secondary">

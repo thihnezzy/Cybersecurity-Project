@@ -3,7 +3,7 @@ import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider,
 import PaymentForm from "../PaymentForm";
 import AddressForm from "../AddressForm";
 
-import {commerce} from '../../../lib/commerce';
+import {commerce} from '../../lib/commerce';
 import useStyles from './styles';
 
 const steps = ['Shipping address', 'Payment details'];

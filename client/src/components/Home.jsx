@@ -1,12 +1,14 @@
 import React from 'react';
 
+import nike from '../images/nike.PNG';
+
 const Home = () => {
 
     return (
         <div className='hero'>
             
             <div class="card bg-dark text-white border-0">
-                <img src="/assets/nike.PNG" class="card-img" alt="..." width="100%"
+                <img src={nike} class="card-img" alt="..." width="100%"
     height="700px" posirion="relative"/>
                 <div class="card-img-overlay d-flex flex-column justify-content">
                     <div className="container">
