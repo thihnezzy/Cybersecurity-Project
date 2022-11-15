@@ -1,63 +1,78 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import ImageSlider from './ImageSlider/ImageSlider';
-import IconMinus from '../images/icon-minus.svg';
-import IconPlus from '../images/icon-plus.svg';
+import IconMinus from '../../images/icon-minus.svg';
+import IconPlus from '../../images/icon-plus.svg';
 import Form from 'react-bootstrap/Form';
+import { fetchSingleProduct } from '../../api/products';
 // import './ProductDetail.css';
 
 import { useParams } from 'react-router-dom';
 import { light } from '@material-ui/core/styles/createPalette';
 import { lightBlue } from '@material-ui/core/colors';
-
+import Navbar from '../NavBar/Navbar';
+import Wrapper from '../Helpers/Wrapper'
 import classes from './ProductDetail.module.css';
 
 const ProductDetail = (props) =>{
   const {id} = useParams();
-  const getSingleProductData = props.data.find(x => x?.id === parseInt(id));
+  const [data, setData] = useState("");
+  const [price, setPrice] = useState(data.price);
+  useEffect(() => {
+  async function fetchData() {
+    try {
+      const response = await fetchSingleProduct(id);
+      setData(response.data[0]);
+      console.log(response);
+      console.log("products  >>>> ",data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  fetchData();
+},[]); //to fetch the data once only
   const [quantity, setQuantity] = useState(1);
-  const [price, setPrice] = useState(getSingleProductData.price);
-
-
+  
   const onClickMinusHandler = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
-      setPrice(price - getSingleProductData.price);
+      setPrice(price - data.price);
     }
   }
 
   const onClickPlusHandler = () => {
     if (quantity < 99){
       setQuantity(quantity + 1);
-      setPrice(price + getSingleProductData.price);
+      setPrice(price + data.price);
     }
   }
-
   return (
-    <Container className={`${classes["product-container"]}`} bg={light} md={{span:3, offset:6}}>
+    <Wrapper>
+      <Navbar/>
+      {data && <Container className={`${classes["product-container"]}`} bg={light} md={{span:3, offset:6}}>
       <Row>
         <Col md={6} className={`${classes['product-image']}`}>
-          <ImageSlider data={getSingleProductData}/>
+          <ImageSlider data={data.image}/>
         </Col>
 
         <Col md={6} className={`${classes["product-detail"]}`}>
           <Row className={`${classes['product-detail__brand']}`}>
-            {getSingleProductData.name}
+            {data.name}
           </Row>
           <Row className={`${classes['product-detail__name']}`}>
-            <h2>{getSingleProductData.description}</h2>
+            <h2>{data.description}</h2>
           </Row>
           <Row>
             <p className={`${classes['product-detail__description']}`}>
-              {getSingleProductData.description}
+              {data.description}
             </p>
           </Row>
             <Row className={`${classes['product-detail__price']}`}>
-              <span>{`$${price.toFixed(2)}`}</span>
+              <span>{`$${data.price.toFixed(2)}`}</span>
               <span>Promotion</span>
             </Row>
 
@@ -82,7 +97,9 @@ const ProductDetail = (props) =>{
             </Row>
         </Col>
       </Row>
-    </Container>
+    </Container>}
+    
+    </Wrapper>
   );
 }
 

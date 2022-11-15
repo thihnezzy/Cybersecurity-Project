@@ -7,12 +7,13 @@ const ImageSlider = (props) => {
     const data = props.data;
     return (<div className="slider">
         <Carousel  autoPlay={true} showArrow={true} centerMode={true} emulateTouch={true} thumbWidth={100}>
-            {
+            {/* {
                 data.image.map((item,index) =>(
                     <div key={data.id.toString()}>
                         <img key={index} src={item} alt="banner"/>
                     </div>
-            ))}
+            ))} */}
+            <img src={data} alt="banner"/>
         </Carousel>
     </div>)
 }

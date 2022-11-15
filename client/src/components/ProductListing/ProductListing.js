@@ -6,7 +6,7 @@ import CardLayout from "./CardLayout/CardLayout";
 import Navbar from '../NavBar/Navbar';
 import {useEffect, useState} from "react";
 import { fetchProducts } from "../../api/products";
-import { Nav } from "react-bootstrap";
+
 const ProductListing = (props) =>{
     const [data, setData] = useState([]);
     

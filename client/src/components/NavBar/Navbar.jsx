@@ -1,6 +1,6 @@
 import React from 'react';
 import { ShoppingCart } from '@material-ui/icons';
-import { AppBar, Toolbar, IconButton, MenuItem, Menu, Typography, Badge } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Typography, Badge } from '@material-ui/core';
 import { Link, useLocation } from 'react-router-dom';
 
 import useStyles from './styles';
@@ -24,16 +24,20 @@ const Navbar = ({ totalItems }) => {
                             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                                     <li className="nav-item">
-                                        <a className="nav-link active" aria-current="page" href="#">Home</a>
+                                        <Link to="/" className="nav-link active" aria-current="page">Home</Link>
+                                        {/* <a className="nav-link active" aria-current="page" href="#">Home</a> */}
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="#">Homme</a>
+                                        <Link to="/products" className="nav-link">Products</Link>
+                                        {/* <a className="nav-link" href="#">Homme</a> */}
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="#">Femme</a>
+                                        <Link to="/products" className="nav-link">Products</Link>
+                                        {/* <a className="nav-link" href="#">Femme</a> */}
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="#">Enfant</a>
+                                        <Link to="/products" className="nav-link">Products</Link>
+                                        {/* <a className="nav-link" href="#">Enfant</a> */}
                                     </li>
                                 </ul>
 

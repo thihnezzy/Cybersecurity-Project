@@ -6,7 +6,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 
 import App from './App';
-import ProductDetail from "./ProductDetail/ProductDetail";
+import ProductDetail from "./components/ProductDetail/ProductDetail";
 import ProductListing from "./components/ProductListing/ProductListing";
 import AddNewProduct from './components/Pages/AddNewProduct/AddNewProduct';
 import ErrorPage from "./components/Pages/Error/ErrorPage";
