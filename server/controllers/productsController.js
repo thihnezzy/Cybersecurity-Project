@@ -12,6 +12,18 @@ export const getProducts = async (req,res) =>{
         
 }
 
+export const getSingleProductData = async (req,res) => {
+    
+    try {
+        const {id} = req.params;
+        const ProductModelData = await ProductModel.find({_id:id})
+        res.status(200).json(ProductModelData);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 export const createProduct = async (req,res) =>{
     const Product = req.body;
 
