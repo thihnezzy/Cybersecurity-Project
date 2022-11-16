@@ -7,7 +7,7 @@ export default makeStyles(() => ({
 
     media:{
         height: 350,
-        width: 350,
+        maxWidth: '100%',
         paddingTop: '56.25%',
     },
 

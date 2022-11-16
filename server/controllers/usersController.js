@@ -24,11 +24,15 @@ export const getUsers = async (req,res) =>{
 
 export const loginUser = async (req,res) => {
     try {
-        const UserModelData = await UserModel.findById(req.params.id);
-
-        const {email, password} = UserModelData;
-
-        res.status(200).json(UserModelData);
+        const {username,password} =req.body;
+        await User.findOne({username:username},(err,user)=>{
+        if(user){
+           if(password === user.password){
+               res.status(200).json({message:"login successfully"});
+           }else{
+               res.status({message:"wrong credentials"})
+           }
+        }})
     }catch (err) {
         res.status(404).json({message: error.message});
     }
@@ -71,7 +75,7 @@ export const getUsersWithUsername = async (req,res) =>{
         if (UserModelData.length === 0){
             res.status(200).json({isExisted: false});
         }else{
-            res.status(200).json({isExisted: true});   
+            res.status(200).json({isExisted: true, password: UserModelData[0].password});   
         }
         
     } catch (error) {

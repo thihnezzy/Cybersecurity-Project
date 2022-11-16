@@ -52,7 +52,7 @@ const Navbar = ({ totalItems }) => {
                                 {(location.pathname === '/' || location.pathname === '/products') && (
                                     <div className={classes.button}>
                                         <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-                                            <Badge badgeContent={totalItems} color="secondary">
+                                            <Badge badgeContent={totalItems} color="secondary" overlap='rectangular'>
                                                 <ShoppingCart />
                                             </Badge>
                                         </IconButton>

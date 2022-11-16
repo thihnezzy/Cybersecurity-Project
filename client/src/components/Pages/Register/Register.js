@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Navbar from '../../NavBar/Navbar';
 import Wrapper from '../../Helpers/Wrapper';
 import classes from './Register.module.css';
-
+import {Link, useNavigate} from 'react-router-dom';
 import {registerUser, fetchUsersWithEmail, fetchUsersWithUsername} from '../../../api/users';
 function Register() {
     const [email, setEmail] = useState('');
@@ -13,6 +13,7 @@ function Register() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [username, setUsername] = useState('');
     const [invalidEmail,setInvalidEmail] = useState(false);
+    const navigate = useNavigate();
     async function sendData () {
         try {
             const response = await registerUser({
@@ -72,6 +73,11 @@ function Register() {
     const onChangeConfirmPasswordHandler = (e) => {
         setConfirmPassword(e.target.value);
     }
+    const onClickHandler = (e) =>{
+    
+        navigate('/login', {replace: true});
+      }
+    
   return (
     <Wrapper className="">
         <Navbar/>
@@ -99,9 +105,13 @@ function Register() {
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control type="password" value={confirmPassword} onChange={onChangeConfirmPasswordHandler} required/>
         </Form.Group>
-        <Button variant="primary" type="submit">
-            Submit
+        <Button variant="primary" type="submit" >
+            Register
         </Button>
+        <Button variant="primary" type="button" className={`${classes.btn} mx-md-5`} onClick={onClickHandler}>
+            Login
+        </Button>
+        
         </Form>
     </Container>
     </Wrapper>

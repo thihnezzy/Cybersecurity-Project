@@ -48,7 +48,6 @@ function App() {
     fetchCart();
   }, []);
   const location = useLocation();
-  console.log(location);
   return (
     <>
     {location.pathname === '/' && <>

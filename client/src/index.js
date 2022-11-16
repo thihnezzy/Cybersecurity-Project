@@ -12,7 +12,7 @@ import AddNewProduct from './components/Pages/AddNewProduct/AddNewProduct';
 import ErrorPage from "./components/Pages/Error/ErrorPage";
 import Profile from './components/Pages/Profile/Profile';
 import Register from './components/Pages/Register/Register';
-
+import Login from './components/Pages/Login/Login';
 
  const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<BrowserRouter>
@@ -25,6 +25,7 @@ root.render(<BrowserRouter>
           <Route path='/products' element={<ProductListing/>}/>
           <Route path='/products/:id' element={<ProductDetail/>}/>
           <Route path='/register' element={<Register/>}/>
+          <Route path='*' element={<Login/>}/>
           <Route path='*' element={<ErrorPage/>}>
 
           </Route>
