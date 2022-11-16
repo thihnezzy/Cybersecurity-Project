@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom/client';
 // import thunk from 'redux-thunk';
 // import reducers from './reducers';
 import {Routes, Route} from 'react-router-dom';
-import "../node_modules/boostrap/dist/css/bootstrap.min.css";
+import "../node_modules/boostrap/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 
 import App from './App';

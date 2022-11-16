@@ -8,6 +8,7 @@ import { commerce } from './components/lib/commerce';
 import Cart from './components/Cart/Cart';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Checkout from './components/CheckoutForm/Checkout/Checkout';
+import Login from './components/Login/Login';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -51,6 +52,7 @@ function App() {
   console.log(cart);
 
   return (
+    
     <Router>
       <div>
         <Routes>
@@ -63,6 +65,8 @@ function App() {
           handleEmptyCart={handleEmptyCart}
           /></>} />
           <Route path="/checkout" element={<Checkout cart={cart} />} />
+          <Route path="/login" element={<Login />} />
+          <Route  />
         </Routes>
       </div>
     </Router>
