@@ -53,12 +53,12 @@ const ProductDetail = (props) =>{
   return (
     <Wrapper>
       <Navbar/>
-      {data && <Container className={`${classes["product-container"]}`} bg={light} md={{span:3, offset:6}}>
-      <Row>
-        <Col md={6} className={`${classes['product-image']}`}>
+      {!data && <h2 className='text-center'>Cannot show product</h2>}
+      {data && <Container className={`${classes["product-container"]}`} bg={light} md={{span:3, offset:6}} >
+      <Row className='mx-5'>
+        <Col md={6}className={`${classes['product-image']}`}>
           <ImageSlider data={data.image}/>
         </Col>
-
         <Col md={6} className={`${classes["product-detail"]}`}>
           <Row className={`${classes['product-detail__brand']}`}>
             {data.name}
