@@ -1,4 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react'
+import {Link} from 'react-router-dom';
+
 import './index.css';
 const Login = () => {
     const userRef = useRef();
@@ -32,8 +34,7 @@ const Login = () => {
                     <h1>You are logged in!</h1>
                     <br />
                     <p>
-                        
-                        <a href="#" >Go to Home</a>
+                    <Link to="/">Go to Home</Link>
                     </p>
                 </section>
             ) : (
