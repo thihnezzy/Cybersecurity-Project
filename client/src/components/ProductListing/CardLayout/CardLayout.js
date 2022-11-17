@@ -7,7 +7,7 @@ const CardLayout = (props) => {
     const item = props.data;
     return (
     <Link to={`/products/${item._id}`} className={`${classes["product-link"]}`}><Card className={classes.card} style={{ width: '15rem' , height: '28rem'}}>
-      <Card.Img className={classes["card-img-top"]} variant="top" src={item.image} />
+      <Card.Img className={classes["card-img-top"]} variant="top" src={item.image[0]} />
       <Card.Body>
         <Card.Title>{item.name}</Card.Title>
         <Card.Text>

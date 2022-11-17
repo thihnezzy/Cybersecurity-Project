@@ -51,8 +51,9 @@ function Register() {
         }
         if (usersWithUsername.data.isExisted){
             alert('Username already exists');
+            console.log(usersWithUsername);
             return;
-        }
+        }   
 
         await sendData();
         setEmail('');
