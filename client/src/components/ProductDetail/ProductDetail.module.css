@@ -9,7 +9,7 @@
 }
 
 .product-image{
-    margin-right: 4rem;
+    /* margin-right: 4rem; */
     width: 35%;
     max-height: fit-content;
     object-fit: cover;

@@ -8,11 +8,12 @@ const ImageSlider = (props) => {
     return (<div className="slider">
         <Carousel  autoPlay={true} showArrow={true} centerMode={true} emulateTouch={true} thumbWidth={100}>
             {
-                data.map((item,index) =>(
+                data.slice(0,data.length <= 12 ? data.length : 12).map((image, index) =>(
                     <div key={index}>
-                        <img key={index} src={item} alt="banner"/>
+                        <img key={index} src={image} alt="banner"/>
                     </div>
-            ))} 
+                ))
+            }
         </Carousel>
     </div>)
 }

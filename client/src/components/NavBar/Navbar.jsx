@@ -2,12 +2,17 @@ import React from 'react';
 import { ShoppingCart } from '@material-ui/icons';
 import { AppBar, Toolbar, IconButton, Typography, Badge } from '@material-ui/core';
 import { Link, useLocation } from 'react-router-dom';
-
+import {Form ,Button} from 'react-bootstrap';
 import useStyles from './styles';
 import logo from '../../images/logo-sport.PNG';
 const Navbar = ({ totalItems }) => {
     const classes = useStyles();
     const location = useLocation();
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        
+    }   
     return (
 
         <div>
@@ -42,12 +47,20 @@ const Navbar = ({ totalItems }) => {
                                 </ul>
 
                                 <div className="buttons">
-                                    <a href="" className='btn btn-outline-white'>
-                                        <i className="fa fa-search" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="" className='btn btn-outline-white ms-2'>
+                                    <Form className="d-flex" onSubmit={onSubmitHandler}>
+                                        <Form.Control
+                                        type="search"
+                                        placeholder="Search"
+                                        className="me-2"
+                                        aria-label="Search"
+                                        />
+                                        <Button variant="outline-success" type='submit'><i className="fa fa-search" aria-hidden="true"></i></Button>
+                                        <a href="/login" className='btn btn-outline-white ms-2'>
                                         <i className='fa fa-user-plus me-1'> </i>
                                     </a>
+                                    </Form>
+
+                                    
                                 </div>
                                 {(location.pathname === '/' || location.pathname === '/products') && (
                                     <div className={classes.button}>
