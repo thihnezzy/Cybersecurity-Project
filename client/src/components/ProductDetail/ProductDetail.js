@@ -27,6 +27,7 @@ const ProductDetail = (props) =>{
     try {
       const response = await fetchSingleProduct(id);
       setData(response.data[0]);
+      setPrice(response.data[0].price);
       console.log(response);
       console.log("products  >>>> ",data);
     } catch (error) {
@@ -41,6 +42,7 @@ const ProductDetail = (props) =>{
     if (quantity > 1) {
       setQuantity(quantity - 1);
       setPrice(price - data.price);
+      console.log(price);
     }
   }
 
@@ -48,13 +50,14 @@ const ProductDetail = (props) =>{
     if (quantity < 99){
       setQuantity(quantity + 1);
       setPrice(price + data.price);
+      console.log(price);
     }
   }
   return (
     <Wrapper>
       <Navbar/>
       {!data && <h2 className='text-center'>Cannot show product</h2>}
-      {data && <Container className={`${classes["product-container"]}`} bg={light} md={{span:3, offset:6}} >
+      {data && <Container className={`${classes["product-container"]}`} bg={light} md={{span:2, offset:4}} >
       <Row className='mx-5'>
         <Col md={6}className={`${classes['product-image']}`}>
           <ImageSlider data={data.image}/>
@@ -95,6 +98,12 @@ const ProductDetail = (props) =>{
                 <Button variant="primary" className={`${classes['add-to-cart']}`}>Add to Cart</Button>
               </Col>
             </Row>
+            <Row>
+              <Col>
+                <p className={`${classes['product-detail__price']}`}>Total: {`$${price.toFixed(2)}`}</p>
+              </Col>
+            </Row>
+
         </Col>
       </Row>
     </Container>}
