@@ -12,8 +12,8 @@ const Home = () => {
     height="700px" position="relative"/>
                 <div class="card-img-overlay d-flex flex-column justify-content">
                     <div className="container">
-                    <h5 class="card-title display-3 fw-bolder mb-0 text-center">NEW ARRIVALS</h5>
-                    <p class="card-text lead fs-2 fw-bolder">CHECK OUT THE TRENDS</p>
+                    <h5 className="card-title display-2 fw-bolder mb-1 text-center">NEW ARRIVALS</h5>
+                    <p className="card-text lead fs-2 fw-bolder">CHECK OUT THE TRENDS</p>
 
                     </div>
                   
