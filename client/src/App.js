@@ -8,6 +8,8 @@ import { commerce } from './components/lib/commerce';
 import Cart from './components/Cart/Cart';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Checkout from './components/CheckoutForm/Checkout/Checkout';
+import Login from './components/Login/Login';
+import ProductListing from "./components/ProductListing/ProductListing";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -68,6 +70,13 @@ function App() {
     {
       location.pathname === '/checkout' && <>
         <Checkout cart={cart} />
+      </>
+    }
+
+
+{
+      location.pathname === '/Login' && <>
+        <Login />
       </>
     }
     </>

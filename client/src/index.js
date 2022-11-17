@@ -8,11 +8,10 @@ import "../node_modules/font-awesome/css/font-awesome.min.css";
 import App from './App';
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import ProductListing from "./components/ProductListing/ProductListing";
-import AddNewProduct from './components/Pages/AddNewProduct/AddNewProduct';
 import ErrorPage from "./components/Pages/Error/ErrorPage";
 import Profile from './components/Pages/Profile/Profile';
 import Register from './components/Pages/Register/Register';
-import Login from './components/Pages/Login/Login';
+import Login from './components/Login/Login';
 
  const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<BrowserRouter>
@@ -20,15 +19,15 @@ root.render(<BrowserRouter>
           <Route path='/' element={<App/>}/>
           <Route path='/cart' element={<App/>}/>
           <Route path='/checkout' element={<App/>}/>
-          <Route path='/new' element={<AddNewProduct/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/products' element={<ProductListing/>}/>
           <Route path='/products/:id' element={<ProductDetail/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='*' element={<Login/>}/>
-          <Route path='*' element={<ErrorPage/>}>
+          <Route path='*' element={<ErrorPage/>} />
+          <Route path='/login' element={<Login />} />
 
-          </Route>
+         
 </Routes>
 </BrowserRouter>); 
 
