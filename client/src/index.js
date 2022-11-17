@@ -13,6 +13,7 @@ import ErrorPage from "./components/Pages/Error/ErrorPage";
 import Profile from './components/Pages/Profile/Profile';
 import Register from './components/Pages/Register/Register';
 import Login from './components/Pages/Login/Login';
+import AddressForm from './components/CheckoutForm/AddressForm';
 
  const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<BrowserRouter>
@@ -27,7 +28,6 @@ root.render(<BrowserRouter>
           <Route path='/register' element={<Register/>}/>
           <Route path='*' element={<Login/>}/>
           <Route path='*' element={<ErrorPage/>}>
-
           </Route>
 </Routes>
 </BrowserRouter>); 
