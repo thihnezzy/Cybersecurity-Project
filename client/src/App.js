@@ -10,8 +10,10 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Checkout from './components/CheckoutForm/Checkout/Checkout';
 import Login from './components/Login/Login';
 import ProductListing from "./components/ProductListing/ProductListing";
+import StripeContainer from './components/stripe/StripeContainer';
 
 function App() {
+  const [showItem, setShowItem] = useState(false)
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
 
@@ -52,6 +54,10 @@ function App() {
   const location = useLocation();
   return (
     <>
+      {location.pathname === '/stripe' && <> <StripeContainer/></>}
+    
+   
+
     {location.pathname === '/' && <>
     <Navbar totalItems={cart.total_items}/>
     <Home/><Products products={products} onAddToCart={handleAddToCart}/>
@@ -78,9 +84,11 @@ function App() {
       location.pathname === '/Login' && <>
         <Login />
       </>
-    }
+    } 
     </>
   );
 }
+
+
 
 export default App; 

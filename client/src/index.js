@@ -12,6 +12,7 @@ import ErrorPage from "./components/Pages/Error/ErrorPage";
 import Profile from './components/Pages/Profile/Profile';
 import Register from './components/Pages/Register/Register';
 import Login from './components/Login/Login';
+import StripeContainer from './components/stripe/StripeContainer';
 
  const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<BrowserRouter>
@@ -25,7 +26,10 @@ root.render(<BrowserRouter>
           <Route path='/register' element={<Register/>}/>
           <Route path='*' element={<Login/>}/>
           <Route path='*' element={<ErrorPage/>} />
-          <Route path='/login' element={<Login />} />
+<Route path='/login' element={<Login />} />
+<Route path='/stripe' element={<StripeContainer/>} />
+
+
 
          
 </Routes>
