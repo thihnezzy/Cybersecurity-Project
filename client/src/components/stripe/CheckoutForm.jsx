@@ -75,7 +75,7 @@ export function CheckoutForm() {
                     </form>
                     :
                     <div>
-                        <h2>You just bought a sweet spatula congrats this is the best decision of you're life</h2>
+                        <h2>You just bought a sweet xxx</h2>
                     </div>
                 }
                 </section>
