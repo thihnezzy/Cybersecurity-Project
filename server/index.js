@@ -1,12 +1,18 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import cors from 'cors';
+
 
 // import itemsRoute from './routes/items.js';
 import userRoute from './routes/userRoute.js';
 import productsRoute from './routes/productsRoute.js';
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url);
 const app = express();
+require("dotenv").config()
+const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST)
+const bodyParser = require("body-parser")
+const cors = require("cors")
+
 
 //TODO:
 /* This index.js contains the routes to pages
@@ -37,6 +43,35 @@ app.use(cors());
             
 app.use('/products', productsRoute);
 app.use('/users', userRoute);
+
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json())
+
+app.use(cors())
+
+app.post("/payment", cors(), async (req, res) => {
+    let {amount, id} = req.body
+    try{
+        const payment = await stripe.paymentIntents.create({
+            amount,
+            currency: "USD",
+            description: "",
+            payment_method: id,
+            confirm: true
+        })
+        // console.log("Payment", payment)
+        res.json({
+            message: "Payment successful",
+            success: true
+        })
+    }catch (error){
+        res.json({
+            message: "Payment failed",
+            success: false
+        })
+    }
+})
+
 
 
 
