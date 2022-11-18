@@ -1,8 +1,8 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import axios from "axios"
 import React, { useState } from 'react'
-import './index.css';
-
+// import './index.css';
+// import classes from "./index.module.css"
 
 const CARD_OPTIONS = {
     iconStyle: "solid",
@@ -61,21 +61,21 @@ export function CheckoutForm() {
 
     return (
         <>
-            <div className="payment_with_stripe">
-                <section>
-                <h2 className="card-title display-4 fw-bolder mb-0 text-center "  >Purchase</h2>
+            <div className={classes.payment_with_stripe}>
+                <section className={classes.section}>
+                <h2 className="card-title display-4 fw-bolder mb-0 text-center ">Purchase</h2>
                 {!success ?
-                    <form onSubmit={handleSubmit}>
-                        <fieldset className="FormGroup">
-                            <div className="FormRow">
+                    <form className={classes.form} onSubmit={handleSubmit}>
+                        <fieldset className={classes.FormGroup}>
+                            <div className={classes.FormRow}>
                                 <CardElement options={CARD_OPTIONS} />
                             </div>
                         </fieldset>
-                        <button className="button">Pay</button>
+                        <button className={classes.button}>Pay</button>
                     </form>
                     :
                     <div>
-                        <h2>You just bought a sweet XXX</h2>
+                        <h2>You just bought a sweet xxx</h2>
                     </div>
                 }
                 </section>
