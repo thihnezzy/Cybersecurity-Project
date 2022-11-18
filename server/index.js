@@ -1,7 +1,5 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import './env.js';
-// import itemsRoute from './routes/items.js';
 import userRoute from './routes/userRoute.js';
 import productsRoute from './routes/productsRoute.js';
 import { createRequire } from 'module'
@@ -12,7 +10,6 @@ require("dotenv").config()
 const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST)
 const bodyParser = require("body-parser")
 const cors = require("cors")
-dotenv.config(`${process.env.JWT_KEY}`);
 //TODO:
 /* This index.js contains the routes to pages
     - landing-page
@@ -26,7 +23,7 @@ dotenv.config(`${process.env.JWT_KEY}`);
     - review (comments, rating, ...)
     - */
 
-// Route for items listing (middleware)
+
 
 //Later on, we create .env to store root and password
 const CONNECTION_URL = 'mongodb+srv://root:root123@cluster0.lazlxio.mongodb.net/?retryWrites=true&w=majority';
@@ -43,8 +40,25 @@ app.use('/products', productsRoute);
 app.use('/users', userRoute);
 app.use('/auth',authRoute);
 
-app.use(bodyParser.urlencoded({extended:true}))
-app.use(bodyParser.json())
-
-app.use(cors())
-
+app.post("/payment", cors(), async (req, res) => {
+    let {amount, id} = req.body
+    try{
+        const payment = await stripe.paymentIntents.create({
+            amount,
+            currency: "USD",
+            description: "",
+            payment_method: id,
+            confirm: true
+        })
+        // console.log("Payment", payment)
+        res.json({
+            message: "Payment successful",
+            success: true
+        })
+    }catch (error){
+        res.json({
+            message: "Payment failed",
+            success: false
+        })
+    }
+})
