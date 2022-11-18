@@ -1,14 +1,17 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import cors from 'cors';
-import dotenv from 'dotenv';
 import './env.js';
 // import itemsRoute from './routes/items.js';
 import userRoute from './routes/userRoute.js';
 import productsRoute from './routes/productsRoute.js';
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url);
 import authRoute from './routes/authRoute.js'
 const app = express();
+require("dotenv").config()
+const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST)
+const bodyParser = require("body-parser")
+const cors = require("cors")
 dotenv.config(`${process.env.JWT_KEY}`);
 //TODO:
 /* This index.js contains the routes to pages
@@ -40,4 +43,8 @@ app.use('/products', productsRoute);
 app.use('/users', userRoute);
 app.use('/auth',authRoute);
 
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json())
+
+app.use(cors())
 

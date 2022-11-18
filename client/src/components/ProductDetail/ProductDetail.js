@@ -9,7 +9,7 @@ import IconMinus from '../../images/icon-minus.svg';
 import IconPlus from '../../images/icon-plus.svg';
 import Form from 'react-bootstrap/Form';
 import { fetchSingleProduct } from '../../api/products';
-// import './ProductDetail.css';
+//import './ProductDetail.css';
 
 import { useParams } from 'react-router-dom';
 import { light } from '@material-ui/core/styles/createPalette';
@@ -17,8 +17,11 @@ import { lightBlue } from '@material-ui/core/colors';
 import Navbar from '../NavBar/Navbar';
 import Wrapper from '../Helpers/Wrapper'
 import classes from './ProductDetail.module.css';
+import Product from '../Products/Product/Product';
+import Cart from '../Cart/Cart';
 
 const ProductDetail = (props) =>{
+  const [cart, setCart] = useState([]);
   const {id} = useParams();
   const [data, setData] = useState("");
   const [price, setPrice] = useState(data.price);
@@ -52,6 +55,10 @@ const ProductDetail = (props) =>{
       setPrice(price + data.price);
       console.log(price);
     }
+  }
+  const onClickHandler = (e) => {
+    console.log("data", data);
+
   }
   return (
     <Wrapper>
@@ -95,7 +102,7 @@ const ProductDetail = (props) =>{
                 </Form>
               </Col>
               <Col className={`${classes['add-to-cart']}`}>
-                <Button variant="primary" className={`${classes['add-to-cart']}`}>Add to Cart</Button>
+                <Button variant="primary" className={`${classes['add-to-cart']}`} onClick={onClickHandler}>Add to Cart</Button>
               </Col>
             </Row>
             <Row>

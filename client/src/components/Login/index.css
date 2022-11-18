@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+
+.login {
+    min-height: 100vh;
+    background-image: linear-gradient(to top, rgba(38,38,38,0.4),rgba(38,38,38,0.4)), url(../../images/nike.PNG);
+    background-size: cover;
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+section {
+
+    background-color: rgba(246, 242, 242, 0.359);
+    width: 100%;
+    max-width: 420px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+}
+
+a, a:visited {
+    color: #fff;
+}
+
+input {
+    margin: 0.5rem 0;
+    padding: 1rem;
+    border: none;
+    border-radius: 30px;
+}
+
+label, button {
+    margin-top: 1rem;
+}
+
+button {
+    width: 10rem;
+    height: 3rem;
+    background: #3a3845;
+    color: #ffff;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+.instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #fff;
+    color: rgb(10, 10, 10);
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
+}
+
+.instructions>svg {
+    margin-right: 0.25rem;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+.hide {
+    display: none;
+}
+
+.valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+}
+
+.invalid {
+    color: red;
+    margin-left: 0.25rem;
+}
+
+.errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.line {
+    display: inline-block;
+}
