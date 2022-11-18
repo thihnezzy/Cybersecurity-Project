@@ -41,7 +41,7 @@ export function CheckoutForm() {
         if (!error) {
             try {
                 const { id } = paymentMethod
-                const response = await axios.post("http://localhost:4000/payment", {
+                const response = await axios.post("http://localhost:5000/payment", {
                     amount: 1000,
                     id
                 })
@@ -75,7 +75,7 @@ export function CheckoutForm() {
                     </form>
                     :
                     <div>
-                        <h2>You just bought a sweet spatula congrats this is the best decision of you're life</h2>
+                        <h2>You just bought a sweet xxx</h2>
                     </div>
                 }
                 </section>
