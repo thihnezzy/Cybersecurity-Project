@@ -5,40 +5,54 @@ import {Container} from 'react-bootstrap'
 import Wrapper from '../../Helpers/Wrapper';
 import Navbar from '../../NavBar/Navbar';
 import classes from './Login.module.css';
-import {useState} from 'react';
-import {loginUser, fetchUsersWithUsername} from '../../../api/users';
+import {useEffect, useState} from 'react';
+// import {loginUser, fetchUsersWithUsername} from '../../../api/users';
 import { Link, useNavigate } from 'react-router-dom';
+import authService from '../../Auth/auth.service';
 function Login() {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [userData, setUserData] = useState({});
   const navigate = useNavigate();
-  async function fetchUser () {
-    try {
-      const response = await fetchUsersWithUsername(username);
-      return response;  
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function fetchUser () {
+  //   try {
+  //     const response = await loginUser(username, password);
+  //     return response;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     if (username.trim().length < 4){
       alert('Invalid username. Username must be at least 4 characters long');
       return;
     }
-    const user = await fetchUser();
-    if (user.data.isExisted){
-      if (password === user.data.password){
-        alert('Login successfully');
-      }else{
-        alert('Wrong password');
-        return
-      }
-    }else{
-      alert('User does not exist');
-      return;
+    if (password.trim().length < 6){
+      alert('Invalid password. Password must be at least 6 characters long');
     }
+    // const response = await fetchUser();
+    // if (response.data.user === false) {
+    //   alert('Invalid username or password');
+    //   return;
+    // }else{
+    //   alert('Login successful');
+    //   //Set the token (jwt)
+    //   localStorage.setItem('token', response.data.token);
+    //   //set token to axios common header
+    //   // setAuthToken(response.data.token);
+      
+    //   setUserData(response.data.user)
+    // }
+
+    await authService.login(username,password).then(response =>{
+      if (response) {
+        alert('login successfully')
+        console.log(response);
+      }
+    });
+
     navigate('/',{replace: true});
   }
   const onChangeUsernameHandler = (e) => {
@@ -51,7 +65,6 @@ function Login() {
     
     navigate('/register', {replace: true});
   }
-
   return (<Wrapper>
     <Navbar/>
     <Container className={`my-auto mt-5 w-50 ${classes.form}`}>

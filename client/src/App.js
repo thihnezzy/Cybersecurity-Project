@@ -8,7 +8,8 @@ import { commerce } from './components/lib/commerce';
 import Cart from './components/Cart/Cart';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Checkout from './components/CheckoutForm/Checkout/Checkout';
-
+import axios from 'axios';
+import authService from './components/Auth/auth.service';
 function App() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
@@ -26,21 +27,25 @@ function App() {
   const handleAddToCart = async (productId, quantity) => {
     const { cart } = await commerce.cart.add(productId, quantity);
     setCart(cart);
+    window.location.reload();
   };
 
   const handleUpdateCartQty = async (productId, quantity) => {
     const {cart} = await commerce.cart.update(productId, {quantity});
     setCart(cart);
+    window.location.reload();
   }
 
   const handleRemoveFromCart = async (productId) => {
     const {cart} = await commerce.cart.remove(productId);
     setCart(cart);
+    window.location.reload();
   }
 
   const handleEmptyCart = async () => {
     const {cart} = await commerce.cart.empty();
     setCart(cart);
+    window.location.reload();
   }
 
   useEffect(() => {
@@ -48,14 +53,24 @@ function App() {
     fetchCart();
   }, []);
   const location = useLocation();
+  const [currentUser, setCurrentUser] = useState(undefined);
+
+  useEffect(() => {
+    const user = authService.getCurrentUser();
+    if (user) {
+        console.log(currentUser);
+      setCurrentUser(user);
+    }
+  }, []);
   return (
     <>
-    {location.pathname === '/' && <>
+    {!currentUser && <h1>You need to login first</h1>}
+    {location.pathname === '/' && currentUser && <>
     <Navbar totalItems={cart.total_items}/>
     <Home/><Products products={products} onAddToCart={handleAddToCart}/>
     <Footer/></>}
 
-    {location.pathname  === '/cart' && <>
+    {location.pathname  === '/cart' && currentUser && <>
           <Navbar totalItems={cart.total_items}/>
            <Cart 
             cart={cart}
@@ -66,10 +81,11 @@ function App() {
             </>
     } 
     {
-      location.pathname === '/checkout' && <>
+      location.pathname === '/checkout' && currentUser &&<>
         <Checkout cart={cart} />
       </>
     }
+    
     </>
   );
 }

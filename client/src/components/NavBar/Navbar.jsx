@@ -1,18 +1,35 @@
 import React from 'react';
 import { ShoppingCart } from '@material-ui/icons';
 import { AppBar, Toolbar, IconButton, Typography, Badge } from '@material-ui/core';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {Form ,Button} from 'react-bootstrap';
 import useStyles from './styles';
 import logo from '../../images/logo-sport.PNG';
+import { useEffect,useState } from 'react';
+import authService from '../Auth/auth.service';
 const Navbar = ({ totalItems }) => {
     const classes = useStyles();
     const location = useLocation();
-
+    const navigate = useNavigate();
     const onSubmitHandler = (e) => {
         e.preventDefault();
         
     }   
+    const [currentUser, setCurrentUser] = useState(undefined);
+
+  useEffect(() => {
+    const user = authService.getCurrentUser();
+    if (user) {
+        console.log(currentUser);
+      setCurrentUser(user);
+    }
+  }, []);
+    
+    const logoutHandler = (e) =>{
+        localStorage.removeItem('token');
+        console.log("logout");
+        window.location.reload();
+    }
     return (
 
         <div>
@@ -37,11 +54,11 @@ const Navbar = ({ totalItems }) => {
                                         {/* <a className="nav-link" href="#">Homme</a> */}
                                     </li>
                                     <li className="nav-item">
-                                        <Link to="/products" className="nav-link">Products</Link>
+                                        <Link to="/products" className="nav-link">Homme</Link>
                                         {/* <a className="nav-link" href="#">Femme</a> */}
                                     </li>
                                     <li className="nav-item">
-                                        <Link to="/products" className="nav-link">Products</Link>
+                                        <Link to="/products" className="nav-link">Femme</Link>
                                         {/* <a className="nav-link" href="#">Enfant</a> */}
                                     </li>
                                 </ul>
@@ -55,12 +72,12 @@ const Navbar = ({ totalItems }) => {
                                         aria-label="Search"
                                         />
                                         <Button variant="outline-success" type='submit'><i className="fa fa-search" aria-hidden="true"></i></Button>
-                                        <a href="/login" className='btn btn-outline-white ms-2'>
+                                        {!currentUser && <a href="/login" className='btn btn-outline-white ms-2'>
                                         <i className='fa fa-user-plus me-1'> </i>
-                                    </a>
+                                        </a>}
+                                        
                                     </Form>
 
-                                    
                                 </div>
                                 {(location.pathname === '/' || location.pathname === '/products') && (
                                     <div className={classes.button}>
@@ -71,6 +88,7 @@ const Navbar = ({ totalItems }) => {
                                         </IconButton>
                                     </div>
                                 )}
+                                {currentUser && <Button onClick={logoutHandler}>Logout</Button>}
                             </div>
                         </div>
                     </nav>

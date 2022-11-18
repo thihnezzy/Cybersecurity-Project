@@ -15,8 +15,11 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.1.2",
-    "font-awesome": "^4.7.0",
     "bootstrap": "^5.2.2",
+    "browserify-zlib": "^0.2.0",
+    "crypto": "^1.0.1",
+    "font-awesome": "^4.7.0",
+    "jsonwebtoken": "^8.5.1",
     "mdb-react-ui-kit": "^5.0.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
@@ -25,18 +28,21 @@
     "react-file-base64": "^1.0.3",
     "react-hook-form": "^7.39.3",
     "react-redux": "^8.0.4",
-    "react-router-dom": "^6.4.3",
     "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
+    "stream": "^0.0.2",
+    "util": "^0.12.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "yarn patch-package"
   },
   "eslintConfig": {
     "extends": [
@@ -55,5 +61,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "https-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "react-app-rewired": "^2.2.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.0"
   }
 }
