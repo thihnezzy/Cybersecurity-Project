@@ -7,6 +7,7 @@ import useStyles from './styles';
 import logo from '../../images/logo-sport.PNG';
 import { useEffect,useState } from 'react';
 import authService from '../Auth/auth.service';
+import jwt_decode from 'jwt-decode';
 const Navbar = ({ totalItems }) => {
     const classes = useStyles();
     const location = useLocation();
@@ -20,9 +21,15 @@ const Navbar = ({ totalItems }) => {
   useEffect(() => {
     const user = authService.getCurrentUser();
     if (user) {
-        console.log(currentUser);
-      setCurrentUser(user);
+        setCurrentUser(user);
     }
+    if (user) {
+        const decodedJwt = jwt_decode(user);
+
+        if (decodedJwt.exp * 1000 < Date.now()) {
+            logoutHandler();
+        }
+      }
   }, []);
     
     const logoutHandler = (e) =>{

@@ -1,7 +1,10 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import axios from "axios"
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
+import authService from "../Auth/auth.service";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import './index.css';
+import { Button } from "react-bootstrap";
 
 
 const CARD_OPTIONS = {
@@ -24,12 +27,15 @@ const CARD_OPTIONS = {
     }
 }
 
-export function CheckoutForm() {
-    const [success, setSuccess] = useState(false)
-    const stripe = useStripe()
-    const elements = useElements()
-
-
+export function CheckoutForm(props) {
+    const location = useLocation();
+    const stripe = useStripe();
+    const elements = useElements();
+    const navigate = useNavigate();
+    const [success, setSuccess] = useState(false);
+    const [price,setPrice] = useState("");
+    const [totalItems,setTotalItems] = useState(0);
+    
     const handleSubmit = async (e) => {
         e.preventDefault()
         const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -48,7 +54,9 @@ export function CheckoutForm() {
 
                 if (response.data.success) {
                     console.log("Successful payment")
-                    setSuccess(true)
+                    setSuccess(true);
+                    setPrice(location.state.cart.subtotal.formatted);
+                    setTotalItems(location.state.cart.total_items);
                 }
 
             } catch (error) {
@@ -58,10 +66,23 @@ export function CheckoutForm() {
             console.log(error.message)
         }
     }
+    const [currentUser,setCurrentUser] = useState(undefined);
+    useEffect(() => {
+        const user = authService.getCurrentUser();
+        if (user) {
+            console.log(user);
+          setCurrentUser(user);
+        }
+        if (!user){
+            alert('You  will be redirect to login page');
+
+            navigate('/login', {replace: true});
+        }
+      }, []);
 
     return (
         <>
-            <div className="payment_with_stripe">
+        {currentUser && <div className="payment_with_stripe">
                 <section>
                 <h2 className="card-title display-4 fw-bolder mb-0 text-center "  >Purchase</h2>
                 {!success ?
@@ -75,14 +96,18 @@ export function CheckoutForm() {
                     </form>
                     :
                     <div>
-                        <h2>You just bought a sweet XXX</h2>
+                        <h2 className="total-items" key="">You just bought {totalItems} items in total</h2>
+                        <h2 className="price">Total: {price}$</h2>
                     </div>
                 }
                 </section>
                
             </div>
 
-
+}
+        {!currentUser && <><h1>You need to login first</h1>
+        
+        </>}
         </>
     )
 }

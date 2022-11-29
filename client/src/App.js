@@ -56,23 +56,15 @@ function App() {
   const location = useLocation();
   const [currentUser, setCurrentUser] = useState(undefined);
 
-  useEffect(() => {
-    const user = authService.getCurrentUser();
-    if (user) {
-        console.log(currentUser);
-      setCurrentUser(user);
-    }
-  }, []);
+  
   return (
     <>
-      {location.pathname === '/stripe' && <> <StripeContainer/></>}
-    {!currentUser && <h1>You need to login first</h1>}
-    {location.pathname === '/' && currentUser && <>
+    {location.pathname === '/' && <>
     <Navbar totalItems={cart.total_items}/>
     <Home/><Products products={products} onAddToCart={handleAddToCart}/>
     <Footer/></>}
 
-    {location.pathname  === '/cart' && currentUser && <>
+    {location.pathname  === '/cart' && <>
           <Navbar totalItems={cart.total_items}/>
            <Cart 
             cart={cart}
@@ -82,11 +74,6 @@ function App() {
             />
             </>
     } 
-    {
-      location.pathname === '/checkout' && currentUser &&<>
-        <Checkout cart={cart} />
-      </>
-    }
     </>
   );
 }

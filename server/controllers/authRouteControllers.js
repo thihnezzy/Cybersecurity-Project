@@ -30,7 +30,6 @@ export const loginUser = (async(req,res) => {
     try {
         const {username,password} =req.body;
         const user = await UserModel.findOne({username:username});
-        console.log(user);
         if(user.password === password){
             console.log(user);
             const token = jwt.sign({id:user._id, username: user.username, password: user.password},process.env.JWT_KEY,{expiresIn: '1h'});

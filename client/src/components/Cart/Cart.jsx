@@ -1,6 +1,6 @@
 import React from 'react'
 import {Container, Typography, Button, Grid} from '@material-ui/core';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 
 import useStyles from './styles';
@@ -10,6 +10,11 @@ import CartItem from './CartItem/CartItem';
 
 const Cart = ({cart, handleUpdateCartQty, handleRemoveFromCart, handleEmptyCart}) => {
     const classes= useStyles();
+
+    const navigate = useNavigate();
+    const toStripe = () =>{
+        navigate('/stripe', {state:{cart}});
+    }
 
     const EmptyCart = () => (
         <Typography variant1="subtitle1"> You have no items in your shopping cart 
@@ -31,7 +36,8 @@ const Cart = ({cart, handleUpdateCartQty, handleRemoveFromCart, handleEmptyCart}
                 </Typography>
                 <div>
                     <Button className={classes.emptyButton} size="large" type="button" variant="contained" color="secondary" onClick={handleEmptyCart}>Empty Cart</Button>
-                    <Button component={Link} to="/stripe" className={classes.checkoutButton} size="large" type="button" variant="contained" color="primary">Checkout</Button>
+                    {/* <Button component={Link} to="/stripe" className={classes.checkoutButton} size="large" type="button" variant="contained" color="primary">Checkout</Button> */}
+                    <Button onClick={toStripe} className={classes.checkoutButton} size="large" type="button" variant="contained" color="primary">Checkout</Button>
                 </div>
             </div>
         </>

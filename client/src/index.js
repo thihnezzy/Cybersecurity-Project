@@ -20,19 +20,14 @@ root.render(<BrowserRouter>
   <Routes>
           <Route path='/' element={<App/>}/>
           <Route path='/cart' element={<App/>}/>
-          <Route path='/checkout' element={<App/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/products' element={<ProductListing/>}/>
           <Route path='/products/:id' element={<ProductDetail/>}/>
           <Route path='/register' element={<Register/>}/>
-          <Route path='*' element={<Login/>}/>
+          <Route path='/login' element={<Login />} />
+          <Route path='/stripe' element={<StripeContainer/>} />
           <Route path='*' element={<ErrorPage/>} />
-<Route path='/login' element={<Login />} />
-<Route path='/stripe' element={<StripeContainer/>} />
 
-
-
-         
 </Routes>
 </BrowserRouter>); 
 
