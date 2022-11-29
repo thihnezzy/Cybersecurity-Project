@@ -77,12 +77,15 @@ function Login() {
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" value={password} onChange={onChangePasswordHandler}/>
         </Form.Group>
-        <Button variant="primary" type="submit" className=''>
+        <Form.Group className={classes['btn-container']}>
+          <Button variant="primary" type="submit" className=''>
           Login
         </Button>
         <Button variant="primary" type="button" onClick={onClickHandler} className=" ">
-        Register
-      </Button>
+          Register
+        </Button>
+        </Form.Group>
+        
       </Form>
       
     </Container>
