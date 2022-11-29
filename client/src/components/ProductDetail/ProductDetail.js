@@ -19,6 +19,8 @@ import Wrapper from '../Helpers/Wrapper'
 import classes from './ProductDetail.module.css';
 import Product from '../Products/Product/Product';
 import Cart from '../Cart/Cart';
+import {Link} from 'react-router-dom';
+
 
 const ProductDetail = (props) =>{
   const [cart, setCart] = useState([]);
@@ -53,10 +55,46 @@ const ProductDetail = (props) =>{
       setPrice(price + data.price);
     }
   }
-  const onClickHandler = (e) => {
+  const inClickHandler = (e) => {
     console.log("data", data);
 
   }
+
+  const onClickHandler = (state = cart, action) => {
+    const product = action.payload;
+    switch (action.type){
+        case "ADDITEM":
+            //CHECK IF THE PRODUCT IS ALREADY EXIST
+            const exist = state.find((x) => x.id === product.id);
+            if(exist){
+                //INCREASE THE QUANTITY
+                return state.map((x) => 
+                x.id === product.id ? {...x, qty: x.qty +1} : x);
+            }else {
+                const product = action.payload;
+                return[
+                    ...state,
+                    {
+                        ...product,
+                        qty: 1,
+                    }
+                ]
+            }
+            break;
+
+            case "DELITEM":
+                const exist1 = state.find((x) => x.id === product.id);
+                if(exist1.qty === 1) {
+                    return state.filter((x) => x.id !== exist1.id);
+                }else{
+                    return state.map((x) =>
+                    x.id === product.id ? {...x, qty: x.qty-1} : x
+                    );
+                }
+                break;
+            }
+
+    }
   return (
     <Wrapper>
       <Navbar/>
@@ -99,7 +137,7 @@ const ProductDetail = (props) =>{
                 </Form>
               </Col>
               <Col className={`${classes['add-to-cart']}`}>
-                <Button variant="primary" className={`${classes['add-to-cart']}`} onClick={onClickHandler}>Add to Cart</Button>
+                <Button variant="primary" className={`${classes['add-to-cart']}`} onClick={onClickHandler}><Link to="/cart" className={classes.link}>Add to cart</Link></Button>
               </Col>
             </Row>
         </Col>

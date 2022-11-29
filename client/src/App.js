@@ -71,6 +71,7 @@ function App() {
             handleRemoveFromCart={handleRemoveFromCart}
             handleEmptyCart={handleEmptyCart}
             />
+            
             </>
     } 
     {
