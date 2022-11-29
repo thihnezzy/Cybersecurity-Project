@@ -7,11 +7,7 @@ import Products from './components/Products/Products';
 import { commerce } from './components/lib/commerce';
 import Cart from './components/Cart/Cart';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Checkout from './components/CheckoutForm/Checkout/Checkout';
-import authService from './components/Auth/auth.service';
-import StripeContainer from './components/stripe/StripeContainer';
 function App() {
-  const [showItem, setShowItem] = useState(false)
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
 
