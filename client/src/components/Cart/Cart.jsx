@@ -10,22 +10,20 @@ import CartItem from './CartItem/CartItem';
 
 const Cart = () => {
     const classes= useStyles();
-    const [data, setData] =  useState([]);
+    const [data, setData] =  useState(!getLocalStorage() ? [] : getLocalStorage());
     const [price,setPrice] = useState(0);
     const navigate = useNavigate();
     const toStripe = () =>{
         navigate('/stripe', {state:{data}});
     }
-    const test = [];
     useEffect(()=>{
-        const fetchData = async () =>{
+        const fetchData = () =>{
             const data = getLocalStorage('products');
-            setData(data);
-            data.forEach(item => {
-                const count = data.filter((obj) => obj._id === item._id).length;
-                item.quantity = count;
-            },test);
+            if (data){
+                setData(data);
+            }       
         }
+        console.log(data);
         fetchData();
         handlerPriceChange();        
     },[]);
@@ -33,7 +31,7 @@ const Cart = () => {
     const handlerPriceChange = () =>{
         let totalPrice = 0;
         data.forEach(item => {
-            totalPrice += item.price;})
+            totalPrice +=item.quantity* item.price;})
         setPrice(totalPrice);
     }
     const handleEmptyCart = () =>{

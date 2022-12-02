@@ -17,22 +17,25 @@ export const getProductsNumber = () =>{
     return count;
 
 }
-export const getLocalStorage = (term) => {
+export const getLocalStorage = (term = 'products') => {
     if (JSON.parse(localStorage.getItem(term) === null))
         return [];
     return JSON.parse(localStorage.getItem(term));
 }
 
-export const postLocalStorage = (product) =>{
+export const postLocalStorage = (product, increase = true) =>{
     const data = getLocalStorage('products');
     let added = false;
     data.forEach(element => {
-        if (element._id === product._id){
+        if (element._id === product._id && increase){
             element.quantity +=1;
+            added = true;
+        }else if (element._id === product._id && !increase && element.quantity > 1){
+            element.quantity -=1;
             added = true;
         }
     });
-    if (!added){
+    if (!added && increase){
         data.push(product);
     }
     localStorage.setItem('products', JSON.stringify(data));

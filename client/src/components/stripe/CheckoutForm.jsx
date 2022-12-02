@@ -5,7 +5,7 @@ import authService from "../Auth/auth.service";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import './index.css';
 import { Button } from "react-bootstrap";
-
+import { getLocalStorage } from "../../api/products";
 
 const CARD_OPTIONS = {
     iconStyle: "solid",
@@ -35,7 +35,7 @@ export function CheckoutForm(props) {
     const [success, setSuccess] = useState(false);
     const [price,setPrice] = useState("");
     const [totalItems,setTotalItems] = useState(0);
-    
+    const [data, setData] = useState(!getLocalStorage() ? [] : getLocalStorage());
     const handleSubmit = async (e) => {
         e.preventDefault()
         const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -43,20 +43,27 @@ export function CheckoutForm(props) {
             card: elements.getElement(CardElement)
         })
 
+        
 
         if (!error) {
             try {
                 const { id } = paymentMethod
                 const response = await axios.post("http://localhost:5000/payment", {
-                    amount: 1000,
+                    amount: price,
                     id
                 })
 
                 if (response.data.success) {
                     console.log("Successful payment")
                     setSuccess(true);
-                    setPrice(location.state.cart.subtotal.formatted);
-                    setTotalItems(location.state.cart.total_items);
+                    let totalItems = 0;
+                let totalPrice = 0;
+                for (let i = 0; i < data.length; i++){
+                    totalItems += data[i].quantity;
+                    totalPrice += data[i].quantity*data[i].price;
+                }
+                setPrice(totalPrice);
+                setTotalItems(totalItems)
                 }
 
             } catch (error) {
@@ -69,8 +76,12 @@ export function CheckoutForm(props) {
     const [currentUser,setCurrentUser] = useState(undefined);
     useEffect(() => {
         const user = authService.getCurrentUser();
+        const products = getLocalStorage('products');
+            if (products){
+                setData(data);
+                
+            }
         if (user) {
-            console.log(user);
           setCurrentUser(user);
         }
         if (!user){
