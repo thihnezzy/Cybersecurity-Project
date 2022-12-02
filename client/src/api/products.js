@@ -6,3 +6,42 @@ export const fetchProducts = () => axios.get(url);
 export const fetchSingleProduct = (id) => axios.get(`${url}/${id}`);
 export const createProduct = (data) => axios.post(url, {data})
 
+export const getProductsNumber = () =>{
+    if (JSON.parse(localStorage.getItem('products') === null))
+        return 0;
+    const data = JSON.parse(localStorage.getItem('products'));
+    let count = 0;
+    for (let i = 0 ;i < data.length; i++){
+        count += data[i].quantity;
+    }
+    return count;
+
+}
+export const getLocalStorage = (term) => {
+    if (JSON.parse(localStorage.getItem(term) === null))
+        return [];
+    return JSON.parse(localStorage.getItem(term));
+}
+
+export const postLocalStorage = (product) =>{
+    const data = getLocalStorage('products');
+    let added = false;
+    data.forEach(element => {
+        if (element._id === product._id){
+            element.quantity +=1;
+            added = true;
+        }
+    });
+    if (!added){
+        data.push(product);
+    }
+    localStorage.setItem('products', JSON.stringify(data));
+}
+function removeObjectWithId(arr, id) {
+    return arr.filter((obj) => obj._id !== id);
+  }
+export const removeItemLocalStorage = (productId) =>{
+    const data = getLocalStorage('products');
+    const newData = removeObjectWithId(data, productId);
+    localStorage.setItem('products', JSON.stringify(newData));
+}

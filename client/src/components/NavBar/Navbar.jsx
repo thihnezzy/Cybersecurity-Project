@@ -12,6 +12,7 @@ const Navbar = ({ totalItems }) => {
     const classes = useStyles();
     const location = useLocation();
     const navigate = useNavigate();
+    let productsData;
     const onSubmitHandler = (e) => {
         e.preventDefault();
         
@@ -20,6 +21,13 @@ const Navbar = ({ totalItems }) => {
 
   useEffect(() => {
     const user = authService.getCurrentUser();
+    
+    if (localStorage.getItem('products') === null) {
+        productsData = [];
+    }else{
+        productsData = JSON.parse(localStorage.getItem('products'));
+    }
+    
     if (user) {
         setCurrentUser(user);
     }
@@ -86,7 +94,7 @@ const Navbar = ({ totalItems }) => {
                                     </Form>
 
                                 </div>
-                                {(location.pathname === '/' || location.pathname === '/products') && (
+                                {(location.pathname === '/'|| location.pathname === '/cart'|| location.pathname.includes('/products')) && (
                                     <div className={classes.button}>
                                         <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
                                             <Badge badgeContent={totalItems} color="secondary" overlap='rectangular'>

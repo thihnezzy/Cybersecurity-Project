@@ -1,38 +1,39 @@
-import React from 'react';
+import React from "react";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import {useEffect, useState} from "react";
+import { fetchProducts } from "../../api/products";
 import {Grid} from '@material-ui/core';
-
 import Product from './Product/Product';
-import useStyles from './styles';
+const ProductListing = (props) =>{
+    const [data, setData] = useState([]);
+    
+    async function fetchData() {
+        try {
+          const response = await fetchProducts();
+          setData(response.data.slice(0,8))
+        } catch (error) {
+          console.error(error);
+        }
+      }
 
-
-const Products = ({products, onAddToCart}) => {
-    const classes = useStyles();
-
+    //Create an array of products 
+    useEffect(() => {
+        fetchData();
+    }, []);
     return (
-        <main className={classes.content}>
-        <div className="container my-5 py-4">
-                <div className="row">
-                    <div className='col-12 mb-5'>
-                        <h1 className='display-6 fw-bolder text-center'>New Arrivals</h1> <hr />
-                    </div>
-                </div>
-            </div>
-        <div className={classes.toolbar} />
-        <Grid container justifyContent="center" spacing={4}>
-            {products.map((product) => (
+        <Container>
+            <Row sm={2} md={3} lg={4} className="g-4 mx-1">
+                <Grid container justifyContent="center" spacing={4}>
+            {data.map((product) => (
                 <Grid item key={product.id} xs={12} sm={6} md={4} lg={3} >
-                    <Product product={product} onAddToCart={onAddToCart} />
+                    <Product product={product} />
                 </Grid>
             ))}
-        </Grid>
-
-        <div className="video ">
-                    <iframe src="https://www.youtube.com/embed/2COSkxxOtXY"></iframe>
-                </div>
-
-    </main>
-    );
-    
+            </Grid>
+            </Row>
+        </Container>
+    )
 }
 
-export default Products;
+export default ProductListing;

@@ -7,47 +7,16 @@ import Products from './components/Products/Products';
 import { commerce } from './components/lib/commerce';
 import Cart from './components/Cart/Cart';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import ProductListing from './components/ProductListing/ProductListing';
+import {getProductsNumber} from './api/products';
 function App() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
-
-  const fetchProducts = async () => {
-    const { data } = await commerce.products.list();
-
-    setProducts(data);
-  }
-
-  const fetchCart = async () => {
-    setCart(await commerce.cart.retrieve());
-  };
-
-  const handleAddToCart = async (productId, quantity) => {
-    const { cart } = await commerce.cart.add(productId, quantity);
-    setCart(cart);
-    window.location.reload();
-  };
-
-  const handleUpdateCartQty = async (productId, quantity) => {
-    const {cart} = await commerce.cart.update(productId, {quantity});
-    setCart(cart);
-    window.location.reload();
-  }
-
-  const handleRemoveFromCart = async (productId) => {
-    const {cart} = await commerce.cart.remove(productId);
-    setCart(cart);
-    window.location.reload();
-  }
-
-  const handleEmptyCart = async () => {
-    const {cart} = await commerce.cart.empty();
-    setCart(cart);
-    window.location.reload();
-  }
+  const [total,setTotal] = useState(0);
 
   useEffect(() => {
-    fetchProducts();
-    fetchCart();
+
+    setTotal(getProductsNumber());
   }, []);
   const location = useLocation();
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -56,18 +25,18 @@ function App() {
   return (
     <>
     {location.pathname === '/' && <>
-    <Navbar totalItems={cart.total_items}/>
-    <Home/><Products products={products} onAddToCart={handleAddToCart}/>
+    <Navbar totalItems={total}/>
+    <Home/>
+    <Products products={products}/>
+    {/* <ProductListing/> */}
+    <div className="video ">
+        <iframe src="https://www.youtube.com/embed/2COSkxxOtXY" allow='autoplay'></iframe>
+    </div>
     <Footer/></>}
 
     {location.pathname  === '/cart' && <>
-          <Navbar totalItems={cart.total_items}/>
-           <Cart 
-            cart={cart}
-            handleUpdateCartQty={handleUpdateCartQty}
-            handleRemoveFromCart={handleRemoveFromCart}
-            handleEmptyCart={handleEmptyCart}
-            />
+          <Navbar totalItems={total}/>
+           <Cart/>
             </>
     } 
     </>
