@@ -4,6 +4,7 @@ import { Typography, Button, Card, CardActions, CardContent, CardMedia } from '@
 import useStyles from './styles';
 import { removeItemLocalStorage } from '../../../api/products';
 import { getLocalStorage, postLocalStorage } from '../../../api/products';
+import { Link } from 'react-router-dom';
 const CartItem = ({item}) => {
     const classes = useStyles();
     const [quantity, setQuantity] = useState(item.quantity);
@@ -25,6 +26,7 @@ const CartItem = ({item}) => {
     }
   return (<>
         <Card className={classes.root}>
+            <Link to={`/products/${item._id}`}>
             <CardMedia className={classes.media} image={item.image} title={item.name}/>
             <CardContent>
                 <div className={classes.cardContent}>
@@ -37,6 +39,7 @@ const CartItem = ({item}) => {
                 </div>
                 <Typography  variant="body2" color="textSecondary">{item.description}</Typography>
             </CardContent>
+            </Link>
             <CardActions disableSpacing className={classes.cardActions}>
                 <div className={classes.buttons}>
                     <Button type="button" size="small" onClick={decreaseQuantity}>-</Button>

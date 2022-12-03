@@ -28,7 +28,10 @@ export const postLocalStorage = (product, increase = true) =>{
     let added = false;
     data.forEach(element => {
         if (element._id === product._id && increase){
-            element.quantity +=1;
+            if (product.quantity !== 1){
+                element.quantity += product.quantity;    
+            }else
+                {element.quantity +=1;}
             added = true;
         }else if (element._id === product._id && !increase && element.quantity > 1){
             element.quantity -=1;
@@ -37,6 +40,7 @@ export const postLocalStorage = (product, increase = true) =>{
     });
     if (!added && increase){
         data.push(product);
+        console.log(product);
     }
     localStorage.setItem('products', JSON.stringify(data));
 }

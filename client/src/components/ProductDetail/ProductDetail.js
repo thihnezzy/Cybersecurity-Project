@@ -8,7 +8,7 @@ import ImageSlider from './ImageSlider/ImageSlider';
 import IconMinus from '../../images/icon-minus.svg';
 import IconPlus from '../../images/icon-plus.svg';
 import Form from 'react-bootstrap/Form';
-import { fetchSingleProduct, getLocalStorage,getProductsNumber } from '../../api/products';
+import { fetchSingleProduct, getLocalStorage,getProductsNumber, postLocalStorage } from '../../api/products';
 //import './ProductDetail.css';
 
 import { useParams } from 'react-router-dom';
@@ -32,7 +32,6 @@ const ProductDetail = (props) =>{
 			setData(response.data[0]);
 			setPrice(response.data[0].price);
 			console.log(response);
-			console.log("products  >>>> ",data);
 		} catch (error) {
 			console.error(error);
 		}
@@ -57,16 +56,20 @@ const ProductDetail = (props) =>{
 			console.log(price);
 		}
 	}
+
+	
 	const onClickHandler = () => {
-		const storage = getLocalStorage('products');
 		const product = {
 			_id: data._id,
 			name: data.name,
 			image: data.image,
 			description: data.description,
 			price: data.price,
+			quantity: quantity
 		}
 		console.log(product);
+		postLocalStorage(product);
+		window.location.reload();
   };
 	return (
 		<Wrapper>
