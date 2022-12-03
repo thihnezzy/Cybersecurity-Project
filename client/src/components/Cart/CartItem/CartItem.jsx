@@ -15,11 +15,13 @@ const CartItem = ({item}) => {
         postLocalStorage(item,false);
         const data = getLocalStorage('products');
         setQuantity(data.find(p => p._id === item._id).quantity);
+        window.location.reload();
     }
     const increaseQuantity = () =>{
         postLocalStorage(item,true);
         const data = getLocalStorage('products');
         setQuantity(data.find(p => p._id === item._id).quantity);
+        window.location.reload();
     }
   return (<>
         <Card className={classes.root}>
@@ -30,7 +32,7 @@ const CartItem = ({item}) => {
                         {item.name}
                     </Typography>
                     <Typography variant="h6">
-                        {item.price}$
+                        {item.price.toFixed(2)}$
                     </Typography>
                 </div>
                 <Typography  variant="body2" color="textSecondary">{item.description}</Typography>
