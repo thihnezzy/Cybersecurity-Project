@@ -8,6 +8,9 @@ import logo from '../../images/logo-sport.PNG';
 import { useEffect,useState } from 'react';
 import authService from '../Auth/auth.service';
 import jwt_decode from 'jwt-decode';
+
+import axios from 'axios';
+
 const Navbar = ({ totalItems }) => {
     const classes = useStyles();
     const location = useLocation();
@@ -33,7 +36,6 @@ const Navbar = ({ totalItems }) => {
     }
     if (user) {
         const decodedJwt = jwt_decode(user);
-
         if (decodedJwt.exp * 1000 < Date.now()) {
             logoutHandler();
         }
