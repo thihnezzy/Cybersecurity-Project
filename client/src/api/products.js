@@ -52,3 +52,6 @@ export const removeItemLocalStorage = (productId) =>{
     const newData = removeObjectWithId(data, productId);
     localStorage.setItem('products', JSON.stringify(newData));
 }
+export const removeAllItemsLocalStorage = () =>{
+    localStorage.removeItem('products');
+}

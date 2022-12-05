@@ -5,7 +5,7 @@ import authService from "../Auth/auth.service";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import './index.css';
 import { Button } from "react-bootstrap";
-import { getLocalStorage } from "../../api/products";
+import { getLocalStorage, removeAllItemsLocalStorage } from "../../api/products";
 
 const CARD_OPTIONS = {
     iconStyle: "solid",
@@ -56,14 +56,20 @@ export function CheckoutForm(props) {
                 if (response.data.success) {
                     console.log("Successful payment")
                     setSuccess(true);
+                    removeAllItemsLocalStorage();
                     let totalItems = 0;
-                let totalPrice = 0;
-                for (let i = 0; i < data.length; i++){
-                    totalItems += data[i].quantity;
-                    totalPrice += data[i].quantity*data[i].price;
+                    let totalPrice = 0;
+                    for (let i = 0; i < data.length; i++){
+                        totalItems += data[i].quantity;
+                        totalPrice += data[i].quantity*data[i].price;
                 }
-                setPrice(totalPrice);
-                setTotalItems(totalItems)
+                    setPrice(totalPrice);
+                    setTotalItems(totalItems)
+                    alert('You will  be redirect to log');
+                    setTimeout(()=>{
+                        navigate('/');
+
+                    },10000)
                 }
 
             } catch (error) {
