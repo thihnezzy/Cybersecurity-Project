@@ -85,7 +85,7 @@ function Login() {
           Register
         </Button>
         </Form.Group>
-        
+        <small><Link to='/reset_password'>Forgot password?</Link></small>
       </Form>
       
     </Container>

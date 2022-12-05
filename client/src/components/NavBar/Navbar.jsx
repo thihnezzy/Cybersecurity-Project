@@ -19,11 +19,7 @@ const Navbar = ({ totalItems }) => {
     let productsData;
     const onSubmitHandler = async(e) => {
         e.preventDefault();
-        const res = await axios.get("http://localhost:5000/products/search", {
-            params :{
-                search: searchTerm
-            }
-        });
+        const res = await axios.get(`http://localhost:5000/products/search/${searchTerm}`);
         console.log(res);
     }   
     const [currentUser, setCurrentUser] = useState(undefined);
