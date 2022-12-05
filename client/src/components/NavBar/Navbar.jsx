@@ -14,14 +14,22 @@ import axios from 'axios';
 const Navbar = ({ totalItems }) => {
     const classes = useStyles();
     const location = useLocation();
+    const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
     let productsData;
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler = async(e) => {
         e.preventDefault();
-        
+        const res = await axios.get("http://localhost:5000/products/search", {
+            params :{
+                search: searchTerm
+            }
+        });
+        console.log(res);
     }   
     const [currentUser, setCurrentUser] = useState(undefined);
-
+    const onChangeHandler = (e) =>{
+        setSearchTerm(e.target.value);
+    }
   useEffect(() => {
     const user = authService.getCurrentUser();
     
@@ -47,6 +55,8 @@ const Navbar = ({ totalItems }) => {
         console.log("logout");
         window.location.reload();
     }
+
+
     return (
 
         <div>
@@ -87,6 +97,8 @@ const Navbar = ({ totalItems }) => {
                                         placeholder="Search"
                                         className="me-2"
                                         aria-label="Search"
+                                        value={searchTerm}
+                                        onChange={onChangeHandler}
                                         />
                                         <Button variant="outline-success" type='submit'><i className="fa fa-search" aria-hidden="true"></i></Button>
                                         {!currentUser && <a href="/login" className='btn btn-outline-white ms-2'>
