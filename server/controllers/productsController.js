@@ -22,7 +22,15 @@ export const getSingleProductData = async (req,res) => {
         console.log(error);
     }
 }
-
+export const getProductsWithSearchTerm = async (req,res) =>{
+    try{
+        console.log("ssdsd");
+        // console.log(req.params);
+        res.status(200).json({message : req})
+    }catch{
+        res.status(404).json({message: error.message});
+    }
+}
 
 export const createProduct = async (req,res) =>{
     const Product = req.body;
