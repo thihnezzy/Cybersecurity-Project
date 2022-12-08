@@ -46,13 +46,17 @@ function Login() {
     //   setUserData(response.data.user)
     // }
     await authService.login(username,password).then(response =>{
-      if (response) {
+      if (response.user) {
         alert('login successfully')
+        console.log(response.user);
+        navigate('/',{replace: true});
+      }else{
+        alert(response.message);
         console.log(response);
       }
     });
 
-    navigate('/',{replace: true});
+    
   }
   const onChangeUsernameHandler = (e) => {
     setUsername(e.target.value);
@@ -85,7 +89,7 @@ function Login() {
           Register
         </Button>
         </Form.Group>
-        <small><Link to='/reset_password'>Forgot password?</Link></small>
+        {/* <small><Link to='/reset_password'>Forgot password?</Link></small> */}
       </Form>
       
     </Container>

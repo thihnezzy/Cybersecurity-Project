@@ -24,6 +24,11 @@ const UserSchema = new mongoose.Schema({
     minlength: 6,
     required: true,
   },
+  score: {
+    type: Number,
+    min: 0,
+    default: 0
+  }
 }, {timestamps: true});
 
 UserSchema.plugin(uniqueValidator, {message: 'is already taken.'});

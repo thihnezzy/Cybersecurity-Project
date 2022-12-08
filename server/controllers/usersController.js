@@ -26,7 +26,6 @@ export const loginUser = async (req,res) => {
     try {
         const {username,password} =req.body;
         const user = await UserModel.findOne({username:username, password:password});
-        console.log(user);
         if(user){
             const token = jwt.sign({id:user._id, username: user.username, password: user.password},process.env.JWT_KEY,{expiresIn: '1h'});
             res.status(200).json({message:"login successfully", user: token});
@@ -34,6 +33,7 @@ export const loginUser = async (req,res) => {
             res.status(404).json({message:"wrong credentials", user:false});
         }
     }catch (err) {
+        console.log(err);
         res.status(404).json({message: err.message});
     }
 }
@@ -93,6 +93,28 @@ export const getUsersWithEmail = async (req,res) =>{
             res.status(200).json({isExisted: true});   
         }
         
+    } catch (error) {
+        res.status(404).json({message: error.message});
+    }
+}
+
+export const changeScore = async (req,res) =>{
+    try {
+        const score = req.body.data;
+        const {id} = req.params;
+        console.log(score,id);
+        await UserModel.findOneAndUpdate({_id:id}, { $inc: { score: score}});
+        res.status(200).json({message:"ok"});
+    }catch (err) {
+        res.status(404).json({message: err.message});
+    }
+}
+
+export const getScore = async (req,res) =>{
+    try {
+        const {id} = req.params;
+        const user = await UserModel.findOne({_id:id});
+        res.status(200).json({score: user.score});
     } catch (error) {
         res.status(404).json({message: error.message});
     }

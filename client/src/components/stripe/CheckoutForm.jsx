@@ -2,11 +2,11 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import axios from "axios"
 import React, { useState,useEffect } from 'react'
 import authService from "../Auth/auth.service";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import './index.css';
-import { Button } from "react-bootstrap";
 import { getLocalStorage, removeAllItemsLocalStorage } from "../../api/products";
-
+import jwt_decode from 'jwt-decode';
+import { changeScore } from "../../api/users";
 const CARD_OPTIONS = {
     iconStyle: "solid",
     style: {
@@ -28,25 +28,53 @@ const CARD_OPTIONS = {
 }
 
 export function CheckoutForm(props) {
-    const location = useLocation();
     const stripe = useStripe();
     const elements = useElements();
     const navigate = useNavigate();
     const [success, setSuccess] = useState(false);
-    const [price,setPrice] = useState("");
+    const [price,setPrice] = useState(0);
     const [totalItems,setTotalItems] = useState(0);
     const [data, setData] = useState(!getLocalStorage() ? [] : getLocalStorage());
+    const rate = (total) => {
+        switch (true){
+            case total >= 1000:
+                return 0.4;
+            case total >= 500:
+                return 0.3
+            case total >= 200:
+                return 0.2
+            case total >= 50:
+                return 0.1
+            case total >= 10:
+                return 0.05
+            default:
+                return 0;
+                
+        }
+    }
+    const calculateScore = () => {
+        
+        return price * rate(price);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: "card",
             card: elements.getElement(CardElement)
         })
-
-        
-
         if (!error) {
             try {
+                if (data){
+                    let totalItems = 0;
+                    let totalPrice = 0;
+                        for (let i = 0; i < data.length; i++){
+                            totalItems += data[i].quantity;
+                            totalPrice += data[i].quantity*data[i].price;
+                    }
+                    setPrice(totalPrice);
+                    setTotalItems(totalItems);
+                    calculateScore();}
                 const { id } = paymentMethod
                 const response = await axios.post("http://localhost:5000/payment", {
                     amount: price,
@@ -56,21 +84,18 @@ export function CheckoutForm(props) {
                 if (response.data.success) {
                     console.log("Successful payment")
                     setSuccess(true);
+                    const decodedJwt = jwt_decode(currentUser);
+
+                    await changeScore(calculateScore(), decodedJwt.id);
+
                     removeAllItemsLocalStorage();
-                    let totalItems = 0;
-                    let totalPrice = 0;
-                    for (let i = 0; i < data.length; i++){
-                        totalItems += data[i].quantity;
-                        totalPrice += data[i].quantity*data[i].price;
-                }
-                    setPrice(totalPrice);
-                    setTotalItems(totalItems)
-                    alert('You will  be redirect to log');
+                    alert('You will  be redirect to homepage');
                     setTimeout(()=>{
                         navigate('/');
 
                     },10000)
                 }
+                
 
             } catch (error) {
                 console.log("Error", error)
@@ -114,7 +139,7 @@ export function CheckoutForm(props) {
                     :
                     <div>
                         <h2 className="total-items" key="">You just bought {totalItems} items in total</h2>
-                        <h2 className="price">Total: {price}$</h2>
+                        <h2 className="price">Total: {price.toFixed(2)}$</h2>
                     </div>
                 }
                 </section>

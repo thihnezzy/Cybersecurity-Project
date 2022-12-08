@@ -40,33 +40,21 @@ app.use('/products', productsRoute);
 app.use('/users', userRoute);
 app.use('/auth',authRoute);
 
-app.post("/payment", cors(), async (req, res) => {
+app.post("/payment", async (req, res) => {
     let {amount, id} = req.body
     try{
-    //     console.log("ok");
-    //     const payment = await stripe.paymentIntents.create({
-    //         amount,
-    //         currency: "USD",
-    //         description: "",
-    //         payment_method: id,
-    //         confirm: true
-    //     }).then((result)=>{
-    //         console.log(result);
-    //         res.status(200).json({
-    //             message: "Payment successful",
-    //             success: true 
-    //         }) 
-    //     }).catch((err)=>{
-    //     console.log(err);
-    //     res.status(404).json({
-    //         message: "Payment failed",
-    //         success: false
-    //     })    
-    // })
-    res.status(200).json(       {
-        message: "Payment Successfully",
-        success: true
-    });
+        amount = Math.round(amount * 100)
+        const payment = await stripe.paymentIntents.create({
+            amount,
+            currency: "USD",
+            description: "",
+            payment_method: id,
+            confirm: true
+        })
+        res.status(200).json(       {
+            message: "Payment Successfully",
+            success: true
+        });
     }catch (error){
         res.status(404).json({
             message: "Payment failed",

@@ -27,8 +27,7 @@ const login = (username, password) => {
         console.log(response);
         if (response.data.user) {
             localStorage.setItem("token", JSON.stringify(response.data.user));
-      }
-
+        }
       return response.data;
     });
 };

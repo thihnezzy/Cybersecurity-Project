@@ -11,7 +11,7 @@ const ProductListing = (props) =>{
     async function fetchData() {
         try {
           const response = await fetchProducts();
-          setData(response.data.slice(0,8))
+          setData(response.data.slice(0,4))
         } catch (error) {
           console.error(error);
         }

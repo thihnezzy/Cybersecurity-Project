@@ -8,13 +8,14 @@ import logo from '../../images/logo-sport.PNG';
 import { useEffect,useState } from 'react';
 import authService from '../Auth/auth.service';
 import jwt_decode from 'jwt-decode';
-
+import { getScore } from '../../api/users';
 import axios from 'axios';
 
 const Navbar = ({ totalItems }) => {
     const classes = useStyles();
     const location = useLocation();
     const [searchTerm, setSearchTerm] = useState('');
+    const [score, setScore] = useState(0);
     const navigate = useNavigate();
     let productsData;
     const onSubmitHandler = async(e) => {
@@ -28,6 +29,7 @@ const Navbar = ({ totalItems }) => {
     }
   useEffect(() => {
     const user = authService.getCurrentUser();
+    let decodedJwt;
     
     if (localStorage.getItem('products') === null) {
         productsData = [];
@@ -39,11 +41,25 @@ const Navbar = ({ totalItems }) => {
         setCurrentUser(user);
     }
     if (user) {
-        const decodedJwt = jwt_decode(user);
+        decodedJwt = jwt_decode(user);
         if (decodedJwt.exp * 1000 < Date.now()) {
             logoutHandler();
         }
-      }
+    }
+    const getScoree = async (decodedJwt) =>{
+        try {
+            const result = await getScore(decodedJwt.id);
+            return result;
+        } catch (error) {
+            
+        }}
+    getScoree(decodedJwt)
+        .then(result => {
+            setScore(result.data.score)
+        }
+            
+            )
+        .catch(err => console.log(err));
   }, []);
     
     const logoutHandler = (e) =>{
@@ -65,7 +81,9 @@ const Navbar = ({ totalItems }) => {
                         <div className="container">
                             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span className="navbar-toggler-icon"></span>
+                                
                             </button>
+                            
                             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                                     <li className="nav-item">
@@ -113,7 +131,12 @@ const Navbar = ({ totalItems }) => {
                                         </IconButton>
                                     </div>
                                 )}
-                                {currentUser && <Button onClick={logoutHandler}>Logout</Button>}
+                                {currentUser && <>
+                                    
+                                <Button onClick={logoutHandler}>Logout</Button>
+                                {score && <div className='px-4'>Score: {score.toFixed(0)}</div>}
+                                
+                                </>}
                             </div>
                         </div>
                     </nav>

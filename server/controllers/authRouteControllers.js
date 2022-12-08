@@ -29,13 +29,18 @@ export const getAuthRoute = ('/auth-home', verifyJWT,(req, res) => {
 export const loginUser = (async(req,res) => {
     try {
         const {username,password} =req.body;
+        console.log(username,password);
         const user = await UserModel.findOne({username:username});
-        if(user.password === password){
-            console.log(user);
-            const token = jwt.sign({id:user._id, username: user.username, password: user.password},process.env.JWT_KEY,{expiresIn: '1h'});
-            res.status(200).json({message:"login successfully", user: token});
-        }else{
-            res.status(200).json({message:"wrong password", user:false});
+        
+        if (user){
+            if(user.password === password){
+                console.log(user);
+                const token = jwt.sign({id:user._id, username: user.username, password: user.password},process.env.JWT_KEY,{expiresIn: '1h'});
+                res.status(200).json({message:"login successfully", user: token});
+            }
+        }
+        else{
+            res.status(200).json({message:"wrong username or password", user:false});
         }
     }catch (err) {
         res.status(404).json({message: err.message});

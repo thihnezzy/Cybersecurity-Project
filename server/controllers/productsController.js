@@ -2,7 +2,6 @@ import ProductModel from "../models/Products.js";
 
 export const getProducts = async (req,res) =>{
     try {
-
         const ProductModelData = await ProductModel.find({})
         res.status(200).json(ProductModelData);
 
@@ -24,9 +23,9 @@ export const getSingleProductData = async (req,res) => {
 }
 export const getProductsWithSearchTerm = async (req,res) =>{
     try{
-        console.log("ssdsd");
-        // console.log(req.params);
-        res.status(200).json({message : req})
+        const {params} = req.params;
+        const data = await ProductModel.find({name: params})
+        res.status(200).json({data})
     }catch{
         res.status(404).json({message: error.message});
     }
