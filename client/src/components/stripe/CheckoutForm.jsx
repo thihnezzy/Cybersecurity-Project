@@ -27,6 +27,7 @@ const CARD_OPTIONS = {
     }
 }
 
+
 export function CheckoutForm(props) {
     const stripe = useStripe();
     const elements = useElements();
@@ -52,9 +53,26 @@ export function CheckoutForm(props) {
                 
         }
     }
-    const calculateScore = () => {
+    const [currentUser,setCurrentUser] = useState(undefined);
+    useEffect(() => {
+        const user = authService.getCurrentUser();
+        const products = getLocalStorage('products');
+            if (products){
+                setData(data);
+                
+            }
+        if (user) {
+          setCurrentUser(user);
+        }
+        if (!user){
+            alert('You  will be redirect to login page');
+
+            navigate('/login', {replace: true});
+        }
+      }, []);
+    const calculateScore = (p) => {
         
-        return price * rate(price);
+        return p * rate(p);
     }
 
     const handleSubmit = async (e) => {
@@ -74,27 +92,33 @@ export function CheckoutForm(props) {
                     }
                     setPrice(totalPrice);
                     setTotalItems(totalItems);
-                    calculateScore();}
-                const { id } = paymentMethod
-                const response = await axios.post("http://localhost:5000/payment", {
-                    amount: price,
-                    id
-                })
-
-                if (response.data.success) {
-                    console.log("Successful payment")
                     setSuccess(true);
                     const decodedJwt = jwt_decode(currentUser);
-
-                    await changeScore(calculateScore(), decodedJwt.id);
-
+                    await changeScore(calculateScore(totalPrice), decodedJwt.id);
                     removeAllItemsLocalStorage();
-                    alert('You will  be redirect to homepage');
+                    alert('You will be redirect to homepage');
                     setTimeout(()=>{
                         navigate('/');
-
-                    },10000)
+                    },5000)
                 }
+                // const { id } = paymentMethod
+                // const response = await axios.post("http://localhost:5000/payment", {
+                //     amount: price,
+                //     id
+                // })
+
+                // if (response.data.success) {
+                //     console.log("Successful payment")
+                //     setSuccess(true);
+                //     const decodedJwt = jwt_decode(currentUser);
+                //     const res = await changeScore(calculateScore(price), decodedJwt.id);
+                    // removeAllItemsLocalStorage();
+                    // alert('You will  be redirect to homepage');
+                    // setTimeout(()=>{
+                    //     navigate('/');
+
+                    // },10000)
+                // }
                 
 
             } catch (error) {
@@ -104,23 +128,7 @@ export function CheckoutForm(props) {
             console.log(error.message)
         }
     }
-    const [currentUser,setCurrentUser] = useState(undefined);
-    useEffect(() => {
-        const user = authService.getCurrentUser();
-        const products = getLocalStorage('products');
-            if (products){
-                setData(data);
-                
-            }
-        if (user) {
-          setCurrentUser(user);
-        }
-        if (!user){
-            alert('You  will be redirect to login page');
-
-            navigate('/login', {replace: true});
-        }
-      }, []);
+    
 
     return (
         <>

@@ -53,7 +53,7 @@ const Cart = () => {
                 ))}
             </Grid>
             <div className={classes.cardDetails}>
-                <Typography variant="h4">Total: {price}$
+                <Typography variant="h4">Total: {price.toFixed(2)}$
                 </Typography>
                 <div>
                     <Button className={classes.emptyButton} size="large" type="button" variant="contained" color="secondary" onClick={handleEmptyCart}>Empty Cart</Button>

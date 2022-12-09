@@ -32,7 +32,7 @@ const Product = ({product}) => {
                         {product.name}
                     </Typography>
                     <Typography variant="h6">
-                        {product.price}
+                        {product.price}$
                     </Typography>
                 </div>
                 <Typography  variant="body2" color="textSecondary">{product.description}</Typography>
