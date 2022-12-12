@@ -13,8 +13,8 @@ const Cart = () => {
     const [data, setData] =  useState(!getLocalStorage() ? [] : getLocalStorage());
     const [price,setPrice] = useState(0);
     const navigate = useNavigate();
-    const toStripe = () =>{
-        navigate('/stripe', {state:{data}});
+    const toAddressForm = () =>{
+        navigate('/AddressForm', {state:{data}});
     }
     useEffect(()=>{
         const fetchData = () =>{
@@ -58,7 +58,7 @@ const Cart = () => {
                 <div>
                     <Button className={classes.emptyButton} size="large" type="button" variant="contained" color="secondary" onClick={handleEmptyCart}>Empty Cart</Button>
                     {/* <Button component={Link} to="/stripe" className={classes.checkoutButton} size="large" type="button" variant="contained" color="primary">Checkout</Button> */}
-                    <Button onClick={toStripe} className={classes.checkoutButton} size="large" type="button" variant="contained" color="primary">Checkout</Button>
+                    <Button onClick={toAddressForm} className={classes.checkoutButton} size="large" type="button" variant="contained" color="primary">Checkout</Button>
                 </div>
             </div>
         </>

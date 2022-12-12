@@ -14,7 +14,6 @@ import axios from 'axios';
 const Navbar = ({ totalItems }) => {
     const classes = useStyles();
     const location = useLocation();
-    const [searchTerm, setSearchTerm] = useState('');
     const [score, setScore] = useState(0);
     const navigate = useNavigate();
     let productsData;
@@ -22,7 +21,9 @@ const Navbar = ({ totalItems }) => {
         e.preventDefault();
         const res = await axios.get(`http://localhost:5000/products/search/${searchTerm}`);
         console.log(res);
-    }   
+    }  
+    const [searchTerm, setSearchTerm] = useState('');
+ 
     const [currentUser, setCurrentUser] = useState(undefined);
     const onChangeHandler = (e) =>{
         setSearchTerm(e.target.value);
@@ -68,6 +69,26 @@ const Navbar = ({ totalItems }) => {
         window.location.reload();
     }
 
+    const [ formData, setFormData ] = useState({
+        searchTerm: '',
+    });
+    const searchHandler = (e)=>{
+        navigate('/search?input='+formData.searchTerm,{replace: true});
+
+        /*axios.post(API_URL + "search", {
+            searchTerm
+          })
+          .then((response) => {
+              console.log(response);
+      
+            return response.data;
+          });*/
+    }
+    function handleChange(e) {
+        const key = e.target.name;
+        const value = e.target.value;
+        setFormData({...formData, [key]: value})
+    }
 
     return (
 
@@ -105,16 +126,17 @@ const Navbar = ({ totalItems }) => {
                                 </ul>
 
                                 <div className="buttons">
-                                    <Form className="d-flex" onSubmit={onSubmitHandler}>
+                                    <Form className="d-flex">
                                         <Form.Control
                                         type="search"
                                         placeholder="Search"
                                         className="me-2"
                                         aria-label="Search"
-                                        value={searchTerm}
-                                        onChange={onChangeHandler}
+                                        onChange={handleChange}
+                                        name='searchTerm'
+                                        
                                         />
-                                        <Button variant="outline-success" type='submit'><i className="fa fa-search" aria-hidden="true"></i></Button>
+                                        <Button onClick={searchHandler} variant="outline-success" type='submit'><i className="fa fa-search" aria-hidden="true"></i></Button>
                                         {!currentUser && <a href="/login" className='btn btn-outline-white ms-2'>
                                         <i className='fa fa-user-plus me-1'> </i>
                                         </a>}
