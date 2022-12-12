@@ -1,10 +1,11 @@
 import express from "express";
 
-import { getProducts, createProduct, updateProduct, deleteProduct ,getSingleProductData, getProductsWithSearchTerm} from "../controllers/productsController.js";
+import {searchProduct, getProducts, createProduct, updateProduct, deleteProduct ,getSingleProductData, getProductsWithSearchTerm} from "../controllers/productsController.js";
 
 const router = express.Router();
 
 //get Product (R)
+router.get('/search',searchProduct);
 router.get('/', getProducts);
 router.get('/:id', getSingleProductData);
 router.get('/search/:params', getProductsWithSearchTerm);

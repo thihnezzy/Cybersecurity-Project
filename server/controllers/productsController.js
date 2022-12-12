@@ -63,3 +63,13 @@ export const deleteProduct = async (req,res) =>{
     const Product = await ProductModel.findByIdAndRemove(id);
     res.redirect('/');
 }
+
+export const searchProduct = async(req,res)=>{
+    const {input}= req.query;
+    const data = await ProductModel.find({"name":{"$regex":input,"$options":"i"}});
+    try {
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json([]);
+    }
+}
