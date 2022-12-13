@@ -102,6 +102,10 @@ const Navbar = ({ totalItems }) => {
                                         <Link to="/products" className="nav-link">Femme</Link>
                                         {/* <a className="nav-link" href="#">Enfant</a> */}
                                     </li>
+                                    <li className="nav-item">
+                                        <Link to="/transfert" className="nav-link">Give points</Link>
+                                        {/* <a className="nav-link" href="#">Enfant</a> */}
+                                    </li>
                                 </ul>
 
                                 <div className="buttons">

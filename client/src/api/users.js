@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/users';
+const url = 'http://localhost:5001/users';
 
 export const registerUser = (data) => axios.post(`${url}/register`, {data});
 export const fetchUsers = () => axios.get(`${url}`);

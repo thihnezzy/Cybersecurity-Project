@@ -9,6 +9,8 @@ import Cart from './components/Cart/Cart';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import ProductListing from './components/ProductListing/ProductListing';
 import {getProductsNumber} from './api/products';
+import transfert from './components/transfert/transfert'
+
 function App() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
@@ -38,7 +40,7 @@ function App() {
           <Navbar totalItems={total}/>
            <Cart/>
             </>
-    } 
+    }
     </>
   );
 }

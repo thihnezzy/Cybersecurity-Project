@@ -1,10 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import userRoute from './routes/userRoute.js';
+import transfertRoute from './routes/transfert.js';
 import productsRoute from './routes/productsRoute.js';
 import { createRequire } from 'module'
 const require = createRequire(import.meta.url);
 import authRoute from './routes/authRoute.js'
+
 const app = express();
 require("dotenv").config()
 const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST)
@@ -27,7 +29,7 @@ const cors = require("cors")
 
 //Later on, we create .env to store root and password
 const CONNECTION_URL = 'mongodb+srv://root:root123@cluster0.lazlxio.mongodb.net/?retryWrites=true&w=majority';
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 mongoose.connect(CONNECTION_URL)
             .then(() => app.listen(PORT, () => console.log(`SERVER RUNNING ON PORT ${PORT}`)))
@@ -61,4 +63,22 @@ app.post("/payment", async (req, res) => {
             success: false
         })
     }
-})
+});
+
+app.use("/transfert", transfertRoute);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

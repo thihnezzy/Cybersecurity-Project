@@ -14,8 +14,9 @@ import Register from './components/Pages/Register/Register';
 // import Login from './components/Login/Login';
 import Login from './components/Pages/Login/Login';
 import StripeContainer from './components/stripe/StripeContainer';
+import Transfert from './components/transfert/transfert';
 
- const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<BrowserRouter>
   <Routes>
           <Route path='/' element={<App/>}/>
@@ -26,8 +27,8 @@ root.render(<BrowserRouter>
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login />} />
           <Route path='/stripe' element={<StripeContainer/>} />
+          <Route path='/transfert' element={<Transfert/>} />
           <Route path='*' element={<ErrorPage/>} />
-
 </Routes>
 </BrowserRouter>); 
 

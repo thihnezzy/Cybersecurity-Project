@@ -13,11 +13,11 @@ const Login = () => {
 
     useEffect(() => {
         userRef.current.focus();
-    }, [])
+    }, []);
 
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd])
+    }, [user, pwd]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,7 +25,7 @@ const Login = () => {
         setUser('');
         setPwd('');
         setSuccess(true);
-    }
+    };
 
     return (
         <div className='login'>

@@ -76,7 +76,7 @@ export function CheckoutForm(props) {
                     setTotalItems(totalItems);
                     calculateScore();}
                 const { id } = paymentMethod
-                const response = await axios.post("http://localhost:5000/payment", {
+                const response = await axios.post("http://localhost:5001/payment", {
                     amount: price,
                     id
                 })
