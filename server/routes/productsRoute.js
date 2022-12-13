@@ -5,6 +5,7 @@ import { getProducts, createProduct, updateProduct, deleteProduct ,getSingleProd
 const router = express.Router();
 
 //get Product (R)
+router.get('/search',searchProduct);
 router.get('/', getProducts);
 router.get('/:id', getSingleProductData);
 router.get('/search/:params', getProductsWithSearchTerm);
