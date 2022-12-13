@@ -14,7 +14,6 @@ import Register from './components/Pages/Register/Register';
 // import Login from './components/Login/Login';
 import Login from './components/Pages/Login/Login';
 import StripeContainer from './components/stripe/StripeContainer';
-
  const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<BrowserRouter>
   <Routes>
