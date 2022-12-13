@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://172.30.150.117/users';
+const url = 'http://172.30.150.117/api/users';
 
 export const registerUser = (data) => axios.post(`${url}/register`, {data});
 export const fetchUsers = () => axios.get(`${url}`);
