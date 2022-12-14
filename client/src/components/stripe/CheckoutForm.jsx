@@ -116,7 +116,6 @@ export function CheckoutForm(props) {
                     // alert('You will  be redirect to homepage');
                     // setTimeout(()=>{
                     //     navigate('/');
-
                     // },10000)
                 // }
                 

@@ -27,7 +27,7 @@ const CartItem = ({item}) => {
   return (<>
         <Card className={classes.root}>
             <Link to={`/products/${item._id}`}>
-            <CardMedia className={classes.media} image={item.image} title={item.name}/>
+            <CardMedia className={classes.media} image={item.image[0]} title={item.name}/>
             <CardContent>
                 <div className={classes.cardContent}>
                     <Typography variant="h6" gutterBottom>

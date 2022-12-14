@@ -1,8 +1,15 @@
+footer{
+    background-color: #000;
+    color: #fff;
+    padding: 3rem 0;
+}
+
 .social-media{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
-    gap: 1.5rem;
+    gap: 3.5rem;
+    margin-right: 5rem;
 }
 .social-media svg{
     width: 2rem;
