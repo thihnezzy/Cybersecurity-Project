@@ -1,4 +1,12 @@
 .form-transfert {
 	text-align: center;
 	padding-top:100px;
+	width: 100%;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+.form-transfert input {
+	border: 2px solid black;
+	width: 20%;
 }
