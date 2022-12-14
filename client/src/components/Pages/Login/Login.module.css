@@ -1,0 +1,25 @@
+.form label{
+    font-weight: 700;
+}
+
+.form-control .invalid {
+    color: #dc3545;
+}
+
+.btn a {
+
+    text-decoration: none;
+}
+
+.btn-container{
+    display: flex;
+}
+.btn-container button:nth-child(1){
+    margin-right: 5rem;
+}
+
+@media screen and (max-width: 375px) {
+    .btn-container button:nth-child(1){
+        margin-right: 2rem;
+    }   
+}

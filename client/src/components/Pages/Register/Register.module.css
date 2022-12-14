@@ -1,0 +1,11 @@
+.form label{
+    font-weight: 700;
+}
+
+.form-control .invalid {
+    color: #dc3545;
+}
+.btn a {
+    color: #fff;
+    text-decoration: none;
+}

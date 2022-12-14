@@ -1,0 +1,51 @@
+/* Navbar */
+.navbar-nav a{
+    font-size: 18px;
+  }
+  
+  
+  /*HOME*/
+  
+  .hero img{
+    margin-top: 0%;
+  }
+  
+  .hero p {
+   color: #FCFE19;
+  }
+  
+  
+  .video{
+    width: 100%;
+  }
+  
+  .video iframe{
+    border:none;
+    width: 100%;
+    height: 400px;
+  }
+  
+  footer {
+     
+      background-color: #0C0F0A;
+      padding: 30px;
+      color: #fff;
+      display: flex;
+      flex-wrap:wrap;
+      justify-content: space-between;
+      margin-top: 150px;
+  
+    }
+    footer .social-media{
+      display: flex;
+    }
+   
+  
+  
+
+.navbar-nav a{
+    font-size: 18px;
+  }
+  
+  
+  

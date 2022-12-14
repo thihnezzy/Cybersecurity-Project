@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.7bbfe1ce.css",
+    "main.js": "/static/js/main.d1e2a165.js",
+    "static/media/nike.PNG": "/static/media/nike.f2fc0f9a68f8ef10fd84.PNG",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/fontawesome-webfont.eot": "/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/logo-sport.PNG": "/static/media/logo-sport.7566c6c099a20f7daf93.PNG",
+    "index.html": "/index.html",
+    "static/media/icon-plus.svg": "/static/media/icon-plus.b297868c5f938612f4f099f9f9d73aea.svg",
+    "static/media/icon-minus.svg": "/static/media/icon-minus.f5073aa8273785ecf6b7811630782736.svg",
+    "main.7bbfe1ce.css.map": "/static/css/main.7bbfe1ce.css.map",
+    "main.d1e2a165.js.map": "/static/js/main.d1e2a165.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7bbfe1ce.css",
+    "static/js/main.d1e2a165.js"
+  ]
+}
