@@ -73,7 +73,7 @@ function Login() {
     <Container className={`my-auto mt-5 w-50 ${classes.form}`}>
       <h2 className='text-primary text-center'>Login</h2>
       <Form onSubmit={onSubmitHandler}>
-        <Form.Group className={`${classes["form-control"]} mb-3`} controlId="formUsername">
+        <Form.Group className={`${classes["form-control"]} mb-3 `} controlId="formUsername">
           <Form.Label>Username</Form.Label>
           <Form.Control type="text" value={username} onChange={onChangeUsernameHandler} />
         </Form.Group>

@@ -16,4 +16,4 @@ A project built by 4 engineering students from INSA Centre Val de Loire
 
     - In the future, we will develop more routes
 
-    Ex: http://172.30.150.117/api/items
+    Ex: http://localhost:5000/items
