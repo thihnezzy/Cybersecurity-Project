@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getProducts, createProduct, updateProduct, deleteProduct ,getSingleProductData, getProductsWithSearchTerm} from "../controllers/productsController.js";
+import { searchProduct,getProducts, createProduct, updateProduct, deleteProduct ,getSingleProductData, getProductsWithSearchTerm} from "../controllers/productsController.js";
 
 const router = express.Router();
 

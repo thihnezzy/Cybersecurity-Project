@@ -14,8 +14,9 @@ import Register from './components/Pages/Register/Register';
 // import Login from './components/Login/Login';
 import Login from './components/Pages/Login/Login';
 import StripeContainer from './components/stripe/StripeContainer';
-import Script from './components/Script/script'
+//import Script from './components/Script/script'
 import Search from './components/search/search'
+import Shipping from './components/Shipping/AddressForm'
 
 import Transfert from './components/transfert/transfert';
 
