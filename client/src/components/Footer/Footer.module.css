@@ -1,0 +1,10 @@
+.social-media{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1.5rem;
+}
+.social-media svg{
+    width: 2rem;
+    height: 2rem;
+}

@@ -29,7 +29,7 @@ function App() {
     <Home/>
     <Products products={products}/>
     {/* <ProductListing/> */}
-    <div className="video ">
+    <div className="video">
         <iframe src="https://www.youtube.com/embed/2COSkxxOtXY" allow='autoplay'></iframe>
     </div>
     <Footer/></>}

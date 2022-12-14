@@ -1,15 +1,22 @@
 
-
-.hero img{
-    margin-top: 0%;
-    height: 100%;
-  }
+.hero{
+  height: 91vh;
+  width: 100%;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 3rem;
+  color: #FCFE19;
+  text-shadow: 5px 5px 6px#a2a412;
+  text-orientation: sideways;
+  letter-spacing: 0.2rem;
+  -webkit-text-orientation: sideways;
+}
   
-.hero p {
-    color: #FCFE19;
-   }
-
-
+.background{
+  height: 100%;
+  width: 100vw;
+}
 .video{
 margin-top: 90px;
 margin-left: 40px;
