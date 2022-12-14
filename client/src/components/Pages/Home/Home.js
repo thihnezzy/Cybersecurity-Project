@@ -14,12 +14,10 @@ const Home = () => {
         <Wrapper>
         <Container className={classes['hero']}>
             <Image src={background} className={classes.background}/>
-                <div className="card-img-overlay d-flex flex-column justify-content">
-                    <div className="container">
-                    <h5 className="card-title display-3 fw-bolder mb-0 text-center">NEW ARRIVALS</h5>
-                    <p className="card-text lead fs-2 fw-bolder">CHECK OUT THE TRENDS</p>
-                    </div>
-                </div>
+            <div className={`${classes["content-holder"]}`}>
+                <h5 className="card-title display-3 fw-bolder mb-0 text-center">NEW ARRIVALS</h5>
+                <p className="card-text lead fs-2 fw-bolder">CHECK OUT THE TRENDS</p>
+            </div>
         </Container>
         </Wrapper>
     );

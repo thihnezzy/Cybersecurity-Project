@@ -77,7 +77,7 @@ const Navbar = ({ totalItems }) => {
                     <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
                         <img src={logo} alt="" height="40px" className={classes.image} />
                     </Typography>
-                    <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+                    <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
                         <div className="container">
                             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span className="navbar-toggler-icon"></span>
@@ -94,18 +94,17 @@ const Navbar = ({ totalItems }) => {
                                         <Link to="/products" className="nav-link">Products</Link>
                                         {/* <a className="nav-link" href="#">Homme</a> */}
                                     </li>
-                                    <li className="nav-item">
+                                    {/* <li className="nav-item">
                                         <Link to="/products" className="nav-link">Homme</Link>
-                                        {/* <a className="nav-link" href="#">Femme</a> */}
+                                        
                                     </li>
                                     <li className="nav-item">
                                         <Link to="/products" className="nav-link">Femme</Link>
-                                        {/* <a className="nav-link" href="#">Enfant</a> */}
-                                    </li>
+                                        
+                                    </li> */}
                                 </ul>
 
-                                <div className="buttons">
-                                    <Form className="d-flex" onSubmit={onSubmitHandler}>
+                                    <Form className={`d-flex`} onSubmit={onSubmitHandler}>
                                         <Form.Control
                                         type="search"
                                         placeholder="Search"
@@ -121,7 +120,6 @@ const Navbar = ({ totalItems }) => {
                                         
                                     </Form>
 
-                                </div>
                                 {(location.pathname === '/'|| location.pathname === '/cart'|| location.pathname.includes('/products')) && (
                                     <div className={classes.button}>
                                         <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">

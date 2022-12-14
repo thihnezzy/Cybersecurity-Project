@@ -14,8 +14,20 @@
 }
   
 .background{
+  position: absolute;
   height: 100%;
   width: 100vw;
+  z-index: -1;
+}
+.content-holder{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100vw;
+  z-index: 1;
+  background-color: rgba(0,0,0,0.4);
 }
 .video{
 margin-top: 90px;
