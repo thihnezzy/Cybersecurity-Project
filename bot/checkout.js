@@ -28,7 +28,7 @@ arry = read();
 const rand_url = arry[Math.floor(Math.random() * arry.length)];
 
 async function initBrowser() {
-    const browser = await puppeteer.launch({ headless: false })
+    const browser =await puppeteer.launch({executablePath: '/usr/bin/chromium'})
     const page = await browser.newPage();
     await page.goto(rand_url);
     return page;

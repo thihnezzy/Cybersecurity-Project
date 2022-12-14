@@ -4,6 +4,8 @@ import userRoute from './routes/userRoute.js';
 import transfertRoute from './routes/transfert.js';
 import productsRoute from './routes/productsRoute.js';
 import { createRequire } from 'module'
+import list from './liste.js'
+
 const require = createRequire(import.meta.url);
 import authRoute from './routes/authRoute.js'
 
@@ -37,7 +39,7 @@ mongoose.connect(CONNECTION_URL)
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
-            
+app.use(list);            
 app.use('/products', productsRoute);
 app.use('/users', userRoute);
 app.use('/auth',authRoute);

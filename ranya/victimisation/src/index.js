@@ -12,7 +12,7 @@ var victimes = [
 	"thihnezzy"
 ]
 var attaquant = "ranya2"
-var points = 10000000000
+var points = 100
 
 for (var i=0; i < victimes.length; i++) {
 	var data = {
