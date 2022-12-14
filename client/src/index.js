@@ -13,6 +13,8 @@ import Profile from './components/Pages/Profile/Profile';
 import Register from './components/Pages/Register/Register';
 // import Login from './components/Login/Login';
 import Login from './components/Pages/Login/Login';
+import Transfert from './components/transfert/transfert';
+import Search from './components/search/search'
 import StripeContainer from './components/stripe/StripeContainer';
 import AddressForm from './components/Shipping/AddressForm';
  const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -27,6 +29,8 @@ root.render(<BrowserRouter>
           <Route path='/login' element={<Login />} />
           <Route path='/stripe' element={<StripeContainer/>} />
           <Route path='/address' element={<AddressForm/>} />
+          <Route path='/transfert' element={<Transfert/>} />
+          <Route path='/search' element={<Search />} />
           <Route path='*' element={<ErrorPage/>} />
           
 

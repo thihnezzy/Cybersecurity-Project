@@ -5,6 +5,7 @@ import productsRoute from './routes/productsRoute.js';
 import { createRequire } from 'module'
 const require = createRequire(import.meta.url);
 import authRoute from './routes/authRoute.js'
+import transfertRoute from './routes/transfert.js'
 const app = express();
 require("dotenv").config()
 const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST)
@@ -62,3 +63,5 @@ app.post("/payment", async (req, res) => {
         })
     }
 })
+
+app.use("/transfert", transfertRoute);

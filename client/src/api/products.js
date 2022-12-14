@@ -1,4 +1,5 @@
 import axios from 'axios';
+export const fetchSearch = (search) => axios.get(url+"/search?input="+search);
 
 const url = 'http://localhost:5000/products';
 

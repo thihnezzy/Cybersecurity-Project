@@ -14,18 +14,19 @@ import axios from 'axios';
 const Navbar = ({ totalItems }) => {
     const classes = useStyles();
     const location = useLocation();
-    const [searchTerm, setSearchTerm] = useState('');
     const [score, setScore] = useState(0);
     const navigate = useNavigate();
     let productsData;
     const onSubmitHandler = async(e) => {
         e.preventDefault();
-        const res = await axios.get(`http://localhost:5000/products/search/${searchTerm}`);
+        const res = await axios.get(`http://172.30.150.102/api/products/search/${input}`);
         console.log(res);
-    }   
+    }  
+    const [input, setinput] = useState('');
+ 
     const [currentUser, setCurrentUser] = useState(undefined);
     const onChangeHandler = (e) =>{
-        setSearchTerm(e.target.value);
+        setinput(e.target.value);
     }
   useEffect(() => {
     const user = authService.getCurrentUser();
@@ -68,6 +69,26 @@ const Navbar = ({ totalItems }) => {
         window.location.reload();
     }
 
+    const [ formData, setFormData ] = useState({
+        input: '',
+    });
+    const searchHandler = (e)=>{
+        navigate('/search?input='+formData.input,{replace: true});
+
+        /*axios.post(API_URL + "search", {
+            input
+          })
+          .then((response) => {
+              console.log(response);
+      
+            return response.data;
+          });*/
+    }
+    function handleChange(e) {
+        const key = e.target.name;
+        const value = e.target.value;
+        setFormData({...formData, [key]: value})
+    }
 
     return (
 
@@ -77,7 +98,7 @@ const Navbar = ({ totalItems }) => {
                     <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
                         <img src={logo} alt="" height="40px" className={classes.image} />
                     </Typography>
-                    <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+                    <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
                         <div className="container">
                             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span className="navbar-toggler-icon"></span>
@@ -94,32 +115,35 @@ const Navbar = ({ totalItems }) => {
                                         <Link to="/products" className="nav-link">Products</Link>
                                         {/* <a className="nav-link" href="#">Homme</a> */}
                                     </li>
-                                    {/* <li className="nav-item">
+                                    <li className="nav-item">
                                         <Link to="/products" className="nav-link">Homme</Link>
-                                        
+                                        {/* <a className="nav-link" href="#">Femme</a> */}
                                     </li>
                                     <li className="nav-item">
                                         <Link to="/products" className="nav-link">Femme</Link>
-                                        
-                                    </li> */}
+                                        {/* <a className="nav-link" href="#">Enfant</a> */}
+                                    </li>
                                 </ul>
 
-                                    <Form className={`d-flex`} onSubmit={onSubmitHandler}>
+                                <div className="buttons">
+                                    <Form className="d-flex">
                                         <Form.Control
                                         type="search"
                                         placeholder="Search"
                                         className="me-2"
                                         aria-label="Search"
-                                        value={searchTerm}
-                                        onChange={onChangeHandler}
+                                        onChange={handleChange}
+                                        name='input'
+                                        
                                         />
-                                        <Button variant="outline-success" type='submit'><i className="fa fa-search" aria-hidden="true"></i></Button>
+                                        <Button onClick={searchHandler} variant="outline-success" type='submit'><i className="fa fa-search" aria-hidden="true"></i></Button>
                                         {!currentUser && <a href="/login" className='btn btn-outline-white ms-2'>
                                         <i className='fa fa-user-plus me-1'> </i>
                                         </a>}
                                         
                                     </Form>
 
+                                </div>
                                 {(location.pathname === '/'|| location.pathname === '/cart'|| location.pathname.includes('/products')) && (
                                     <div className={classes.button}>
                                         <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
@@ -146,4 +170,3 @@ const Navbar = ({ totalItems }) => {
 }
 
 export default Navbar;
-
