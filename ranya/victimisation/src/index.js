@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5001/transfert/makeTransfert';
+const url = 'http://172.30.150.102/api/transfert/makeTransfert';
 
 export const makeTransfert = (data) => axios.post(`${url}`, {data});
 
