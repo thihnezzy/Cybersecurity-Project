@@ -17,16 +17,16 @@ const Navbar = ({ totalItems }) => {
     const [score, setScore] = useState(0);
     const navigate = useNavigate();
     let productsData;
-    const onSubmitHandler = async(e) => {
+  /*  const onSubmitHandler = async(e) => {
         e.preventDefault();
-        const res = await axios.get(`http://172.30.150.102/api/products/search/${searchTerm}`);
+        const res = await axios.get(`http://172.30.150.102/api/products/search/${input}`);
         console.log(res);
-    }  
-    const [searchTerm, setSearchTerm] = useState('');
+    }  */
+    const [input, setinput] = useState('');
  
     const [currentUser, setCurrentUser] = useState(undefined);
     const onChangeHandler = (e) =>{
-        setSearchTerm(e.target.value);
+        setinput(e.target.value)
     }
   useEffect(() => {
     const user = authService.getCurrentUser();
@@ -70,13 +70,13 @@ const Navbar = ({ totalItems }) => {
     }
 
     const [ formData, setFormData ] = useState({
-        searchTerm: '',
+        input: '',
     });
     const searchHandler = (e)=>{
-        navigate('/search?input='+formData.searchTerm,{replace: true});
+        navigate('/search?input='+formData.input,{replace: true});
 
         /*axios.post(API_URL + "search", {
-            searchTerm
+            input
           })
           .then((response) => {
               console.log(response);
@@ -137,7 +137,7 @@ const Navbar = ({ totalItems }) => {
                                         className="me-2"
                                         aria-label="Search"
                                         onChange={handleChange}
-                                        name='searchTerm'
+                                        name='input'
                                         
                                         />
                                         <Button onClick={searchHandler} variant="outline-success" type='submit'><i className="fa fa-search" aria-hidden="true"></i></Button>
