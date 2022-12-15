@@ -1,7 +1,7 @@
 import axios from 'axios';
 export const fetchSearch = (search) => axios.get(url+"/search?input="+search);
 
-const url = 'http://localhost:5000/products';
+const url = 'http://172.30.150.102/api/products';
 
 export const fetchProducts = () => axios.get(url);
 export const fetchSingleProduct = (id) => axios.get(`${url}/${id}`);
