@@ -43,7 +43,9 @@ The server should now be running at [http://localhost:5000](http://localhost:500
 
 ## API Endpoints
 
-- `GET /products`: Retrieves a list of products
-
-
-
+- `GET /products`: Retrieves a list of products 
+- `GET /products/:id`: Retrieves detailed product
+- `GET /cart`: Retrieves list of products in cart
+- `GET /login`: Login page
+- `GET /product`: Registration Page
+...
