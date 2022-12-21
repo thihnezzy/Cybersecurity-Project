@@ -1,19 +1,49 @@
-# Cybersecurity-Project
-A project built by 4 engineering students from INSA Centre Val de Loire
+# Cybersecurity-Project - MERN Stack App
+
+This is a full-stack web application built with the MERN stack (MongoDB, Express.js, React, and Node.js) by four engineering students. Our goal is to build a website and use pentesting and auto-script to attack it.
+
+## Running the app locally
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/)
+- [MongoDB](https://www.mongodb.com/)
+
+### Client-side
+
+1. Navigate to the `client` directory:
+    ```
+    cd client
+    ```
+2. Install the dependencies:
+```
+npm install -f
+```
+3. Start the client:
+```
+npm start
+```
+The client should now be running at [http://localhost:3000](http://localhost:3000).
+
+### Server-side
+
+1. Navigate to the `server` directory:
+```
+cd server
+```
+2. Install the dependencies:
+```
+npm install
+```
+3. Start the server:
+```
+npm start
+```
+The server should now be running at [http://localhost:5000](http://localhost:5000).
+
+## API Endpoints
+
+- `GET /products`: Retrieves a list of products
 
 
-# Before beginning:
-    - Make sure that you installed all the packages by typing the command 
-        - npm install
 
-- To start the frontend: 
-    - cd to client side folder. And type in the terminal: npm start
-- For the backend:
-    - cd to server side folder. And type in the terminal: npm start
-
-- In the browser:
-    - http://localhost:[PORT]/[ROUTE]
-
-    - In the future, we will develop more routes
-
-    Ex: http://localhost:5000/items
