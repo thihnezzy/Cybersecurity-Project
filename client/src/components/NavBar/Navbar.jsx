@@ -18,15 +18,20 @@ const Navbar = ({ totalItems }) => {
     const [score, setScore] = useState(0);
     const navigate = useNavigate();
     let productsData;
-    const onSubmitHandler = async(e) => {
+    /*const onSubmitHandler = async(e) => {
         e.preventDefault();
         const res = await axios.get(`http://localhost:5000/products/search/${searchTerm}`);
         console.log(res);
-    }   
+    } */  
+    const [input, setinput] = useState('');
+
     const [currentUser, setCurrentUser] = useState(undefined);
     const onChangeHandler = (e) =>{
         setSearchTerm(e.target.value);
     }
+    const [ formData, setFormData ] = useState({
+        input: '',
+    });
   useEffect(() => {
     const user = authService.getCurrentUser();
     let decodedJwt;
@@ -62,6 +67,24 @@ const Navbar = ({ totalItems }) => {
         .catch(err => console.log(err));
   }, []);
     
+  const searchHandler = (e)=>{
+    navigate('/search?input='+formData.input,{replace: true});
+
+    /*axios.post(API_URL + "search", {
+        input
+      })
+      .then((response) => {
+          console.log(response);
+  
+        return response.data;
+      });*/
+}
+function handleChange(e) {
+    const key = e.target.name;
+    const value = e.target.value;
+    setFormData({...formData, [key]: value})
+}
+
     const logoutHandler = (e) =>{
         localStorage.removeItem('token');
         console.log("logout");
@@ -104,16 +127,17 @@ const Navbar = ({ totalItems }) => {
                                     </li> */}
                                 </ul>
 
-                                    <Form className={`d-flex`} onSubmit={onSubmitHandler}>
+                                <Form className="d-flex">
                                         <Form.Control
                                         type="search"
                                         placeholder="Search"
                                         className="me-2"
                                         aria-label="Search"
-                                        value={searchTerm}
-                                        onChange={onChangeHandler}
+                                        onChange={handleChange}
+                                        name='input'
+                                        
                                         />
-                                        <Button variant="outline-success" type='submit'><i className="fa fa-search" aria-hidden="true"></i></Button>
+                                        <Button onClick={searchHandler} variant="outline-success" type='submit'><i className="fa fa-search" aria-hidden="true"></i></Button>
                                         {!currentUser && <a href="/login" className='btn btn-outline-white ms-2'>
                                         <i className='fa fa-user-plus me-1'> </i>
                                         </a>}

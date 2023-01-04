@@ -14,6 +14,7 @@ import Register from './components/Pages/Register/Register';
 // import Login from './components/Login/Login';
 import Login from './components/Pages/Login/Login';
 import StripeContainer from './components/stripe/StripeContainer';
+import Search from './components/search/search'
 import AddressForm from './components/Shipping/AddressForm';
  const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<BrowserRouter>
@@ -27,6 +28,7 @@ root.render(<BrowserRouter>
           <Route path='/login' element={<Login />} />
           <Route path='/stripe' element={<StripeContainer/>} />
           <Route path='/address' element={<AddressForm/>} />
+          <Route path='/search' element={<Search />} />
           <Route path='*' element={<ErrorPage/>} />
           
 
