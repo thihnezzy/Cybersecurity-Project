@@ -20,7 +20,7 @@ const Navbar = ({ totalItems }) => {
     let productsData;
     /*const onSubmitHandler = async(e) => {
         e.preventDefault();
-        const res = await axios.get(`http://localhost:5000/products/search/${searchTerm}`);
+        const res = await axios.get(`http://172.30.150.102/api/products/search/${searchTerm}`);
         console.log(res);
     } */  
     const [input, setinput] = useState('');

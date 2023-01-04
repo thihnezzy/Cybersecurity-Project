@@ -39,7 +39,7 @@ npm install
 ```
 npm start
 ```
-The server should now be running at [http://localhost:5000](http://localhost:5000).
+The server should now be running at [http://172.30.150.102/api](http://172.30.150.102/api).
 
 ## API Endpoints
 
