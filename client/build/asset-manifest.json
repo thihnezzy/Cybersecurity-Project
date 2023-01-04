@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.763f8854.css",
-    "main.js": "/static/js/main.95a8d4d1.js",
+    "main.css": "/static/css/main.1e263fe3.css",
+    "main.js": "/static/js/main.d80e3350.js",
     "static/media/background.jpg": "/static/media/background.6dfad95bddf6b0c68a1a.jpg",
     "static/media/nike.PNG": "/static/media/nike.f2fc0f9a68f8ef10fd84.PNG",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
@@ -13,11 +13,11 @@
     "index.html": "/index.html",
     "static/media/icon-plus.svg": "/static/media/icon-plus.b297868c5f938612f4f099f9f9d73aea.svg",
     "static/media/icon-minus.svg": "/static/media/icon-minus.f5073aa8273785ecf6b7811630782736.svg",
-    "main.763f8854.css.map": "/static/css/main.763f8854.css.map",
-    "main.95a8d4d1.js.map": "/static/js/main.95a8d4d1.js.map"
+    "main.1e263fe3.css.map": "/static/css/main.1e263fe3.css.map",
+    "main.d80e3350.js.map": "/static/js/main.d80e3350.js.map"
   },
   "entrypoints": [
-    "static/css/main.763f8854.css",
-    "static/js/main.95a8d4d1.js"
+    "static/css/main.1e263fe3.css",
+    "static/js/main.d80e3350.js"
   ]
 }
