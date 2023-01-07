@@ -44,14 +44,6 @@ app.use('/auth',authRoute);
 app.post("/payment", async (req, res) => {
     let {amount, id} = req.body
     try{
-        // amount = Math.round(amount * 100)
-        // const payment = await stripe.paymentIntents.create({
-        //     amount,
-        //     currency: "USD",
-        //     description: "",
-        //     payment_method: id,
-        //     confirm: true
-        // })
         res.status(200).json(       {
             message: "Payment Successfully",
             success: true

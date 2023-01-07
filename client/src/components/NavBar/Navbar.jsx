@@ -18,11 +18,6 @@ const Navbar = ({ totalItems }) => {
     const [score, setScore] = useState(0);
     const navigate = useNavigate();
     let productsData;
-    /*const onSubmitHandler = async(e) => {
-        e.preventDefault();
-        const res = await axios.get(`http://localhost:5000/products/search/${searchTerm}`);
-        console.log(res);
-    } */  
     const [input, setinput] = useState('');
 
     const [currentUser, setCurrentUser] = useState(undefined);
@@ -69,15 +64,6 @@ const Navbar = ({ totalItems }) => {
     
   const searchHandler = (e)=>{
     navigate('/search?input='+formData.input,{replace: true});
-
-    /*axios.post(API_URL + "search", {
-        input
-      })
-      .then((response) => {
-          console.log(response);
-  
-        return response.data;
-      });*/
 }
 function handleChange(e) {
     const key = e.target.name;
@@ -111,20 +97,12 @@ function handleChange(e) {
                                 <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                                     <li className="nav-item">
                                         <Link to="/" className="nav-link active" aria-current="page">Home</Link>
-                                        {/* <a className="nav-link active" aria-current="page" href="#">Home</a> */}
+                      
                                     </li>
                                     <li className="nav-item">
                                         <Link to="/products" className="nav-link">Products</Link>
-                                        {/* <a className="nav-link" href="#">Homme</a> */}
+                                      
                                     </li>
-                                    {/* <li className="nav-item">
-                                        <Link to="/products" className="nav-link">Homme</Link>
-                                        
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link to="/products" className="nav-link">Femme</Link>
-                                        
-                                    </li> */}
                                 </ul>
 
                                 <Form className="d-flex">

@@ -101,24 +101,6 @@ export function CheckoutForm(props) {
                         navigate('/');
                     },5000)
                 }
-                // const { id } = paymentMethod
-                // const response = await axios.post("http://localhost:5000/payment", {
-                //     amount: price,
-                //     id
-                // })
-
-                // if (response.data.success) {
-                //     console.log("Successful payment")
-                //     setSuccess(true);
-                //     const decodedJwt = jwt_decode(currentUser);
-                //     const res = await changeScore(calculateScore(price), decodedJwt.id);
-                    // removeAllItemsLocalStorage();
-                    // alert('You will  be redirect to homepage');
-                    // setTimeout(()=>{
-                    //     navigate('/');
-                    // },10000)
-                // }
-                
 
             } catch (error) {
                 console.log("Error", error)

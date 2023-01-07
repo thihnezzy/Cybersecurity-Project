@@ -15,14 +15,6 @@ function Login() {
   const [password, setPassword] = useState('');
   const [userData, setUserData] = useState({});
   const navigate = useNavigate();
-  // async function fetchUser () {
-  //   try {
-  //     const response = await loginUser(username, password);
-  //     return response;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     if (username.trim().length < 4){
@@ -32,19 +24,6 @@ function Login() {
     if (password.trim().length < 6){
       alert('Invalid password. Password must be at least 6 characters long');
     }
-    // const response = await fetchUser();
-    // if (response.data.user === false) {
-    //   alert('Invalid username or password');
-    //   return;
-    // }else{
-    //   alert('Login successful');
-    //   //Set the token (jwt)
-    //   localStorage.setItem('token', response.data.token);
-    //   //set token to axios common header
-    //   // setAuthToken(response.data.token);
-      
-    //   setUserData(response.data.user)
-    // }
     await authService.login(username,password).then(response =>{
       if (response.user) {
         alert('login successfully')
@@ -89,7 +68,6 @@ function Login() {
           Register
         </Button>
         </Form.Group>
-        {/* <small><Link to='/reset_password'>Forgot password?</Link></small> */}
       </Form>
       
     </Container>
