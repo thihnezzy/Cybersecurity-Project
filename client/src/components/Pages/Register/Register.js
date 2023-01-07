@@ -26,10 +26,6 @@ function Register() {
     }
     const onSubmitHandler = async (e) => {
         e.preventDefault();
-        if (username.trim().length < 4){
-            alert('Username must be at least 4 characters long');
-            return;
-        }
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
         }else{
             setInvalidEmail(true);
@@ -38,9 +34,6 @@ function Register() {
 
         if (password !== confirmPassword){    
             alert('Passwords do not match');
-            return;
-        }else if (password.trim().length < 6){
-            alert('Password must be at least 6 characters long');
             return;
         }
         const usersWithEmail = await fetchUsersWithEmail(email);

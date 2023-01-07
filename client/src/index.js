@@ -11,7 +11,6 @@ import ProductListing from "./components/ProductListing/ProductListing";
 import ErrorPage from "./components/Pages/Error/ErrorPage";
 import Profile from './components/Pages/Profile/Profile';
 import Register from './components/Pages/Register/Register';
-// import Login from './components/Login/Login';
 import Login from './components/Pages/Login/Login';
 import StripeContainer from './components/stripe/StripeContainer';
 import Search from './components/search/search'

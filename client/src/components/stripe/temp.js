@@ -41,7 +41,7 @@ export function CheckoutForm() {
         if (!error) {
             try {
                 const { id } = paymentMethod
-                const response = await axios.post("http://172.30.150.102/api/payment", {
+                const response = await axios.post("http://localhost:5000/payment", {
                     amount: 1000,
                     id
                 })
