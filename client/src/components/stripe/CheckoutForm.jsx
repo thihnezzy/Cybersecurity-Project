@@ -102,7 +102,7 @@ export function CheckoutForm(props) {
                     },5000)
                 }
                 // const { id } = paymentMethod
-                // const response = await axios.post("http://172.30.150.101/api/payment", {
+                // const response = await axios.post("http://172.30.150.117/api/payment", {
                 //     amount: price,
                 //     id
                 // })
