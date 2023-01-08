@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://172.30.150.117/api/products';
+const url = 'http://172.30.150.10/api/products';
 export const fetchSearch = (search) => axios.get(url+"/search?input="+search);
 
 export const fetchProducts = () => axios.get(url);
